@@ -1,10 +1,10 @@
-﻿using System;
+﻿using FilteringApp.Core.Models;
+using System;
 using System.Collections.Generic;
-using System.Text;
 
-namespace FilteringApp
+namespace FilteringApp.Core.Utils
 {
-    class TheArray
+    public class TheArray
     {
         public void RunTheProgram()
         {
@@ -12,6 +12,7 @@ namespace FilteringApp
             var results = FilterOutResults(userInput);
             DisplayResults(results);
         }
+
         private UserInput ReadUserInput()
         {
             var userInput = new UserInput();
@@ -22,9 +23,12 @@ namespace FilteringApp
             userInput.FilterValue = Console.ReadLine();
             return userInput;
         }
+
+        // Move to Core project
+        // Static class DigitFilter
         private List<string> FilterOutResults(UserInput userInput)
         {
-            var numbers = userInput.UserValue.Split(",");
+            var numbers = userInput.UserValue.Split(',');
             var result = new List<string>();
             Console.WriteLine("Array values filtered with filter value are: ");
             foreach (var userValue in numbers)

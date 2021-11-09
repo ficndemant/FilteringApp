@@ -1,4 +1,6 @@
-﻿namespace FilteringApp
+﻿using FilteringApp.Core.Utils;
+
+namespace FilteringApp
 {
     class Program
     {

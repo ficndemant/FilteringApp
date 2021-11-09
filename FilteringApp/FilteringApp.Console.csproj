@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FilteringApp.Core\FilteringApp.Core.csproj" />
+	  <!--console able to use core, but not the other way around-->
+  </ItemGroup>
+
+</Project>

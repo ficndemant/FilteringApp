@@ -1,4 +1,4 @@
-﻿namespace FilteringApp
+﻿namespace FilteringApp.Core.Models
 {
     public class UserInput
     {
