@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FilteringApp.Core\FilteringApp.Core.csproj" />
-	  <!--console able to use core, but not the other way around-->
+	  <!--!!!!!!!!!!!!!!! console able to use core, but not the other way around !!!!!!!!!!!!!!!-->
   </ItemGroup>
 
 </Project>
