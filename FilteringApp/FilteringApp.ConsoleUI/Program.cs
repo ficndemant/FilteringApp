@@ -8,12 +8,6 @@ namespace FilteringApp.ConsoleUI
     {
         static void Main(string[] args)
         {
-            //var theArray = new TheArray();
-            //theArray.RunTheProgram();
-
-            //var consoleUI = new ConsoleUI();
-            //consoleUI.ReadUserArrayAndSearchValue();
-
             Console.Clear();
             Console.WriteLine("Please provide INT numbers for the array, separated by commas (,).");
             string[] stringArray = Console.ReadLine().Split(',');
