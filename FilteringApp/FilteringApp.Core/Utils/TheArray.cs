@@ -45,7 +45,7 @@ namespace FilteringApp.Core.Utils
             Console.WriteLine("This is your set: ");
             foreach (var item in result)
             {
-                Console.WriteLine(" " + item + ",");
+                Console.Write(" " + item + " ");
             }
         }
 
