@@ -22,7 +22,7 @@ namespace FilteringApp.Core.Utils
 
                 var n = checkedNumber;
 
-                while ((n > 0) && (@break == false))
+                while (n > 0 && @break == false)
                 {
                     if (n % 10 == number)
                     {
