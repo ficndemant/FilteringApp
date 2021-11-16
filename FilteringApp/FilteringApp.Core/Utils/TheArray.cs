@@ -45,22 +45,25 @@ namespace FilteringApp.Core.Utils
                 Console.WriteLine("FOR: i fora wynosi: " + i);
 
                 var checkedNumber = numbers[i];
-                var numberOfExlusions = 0;
+                //var numberOfExlusions = 0;
                 var digitWasFound = false;
 
                 var n = checkedNumber;
 
-                while ((checkedNumber > 0) && ( digitWasFound == false ))
+                while ((n > 0) && (digitWasFound == false))
                 {
-                    if (checkedNumber % 10 == number)
+                    if (n % 10 == number)
                     {
-                        numberOfExlusions++;
+                        //numberOfExlusions++;
                         digitWasFound = true;
                         Console.WriteLine("I have got the digit in the number alright!");
                         result.Add(numbers[i].ToString());
-                        Console.WriteLine("Appended the number to the string");
-                        n = n / 10;
+                        Console.WriteLine("Appended the number to the List");
 
+                    }
+                    else
+                    {
+                        n = n / 10;
                     }
                 }
 
