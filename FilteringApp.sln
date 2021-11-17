@@ -9,6 +9,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilteringApp.ConsoleUI", "F
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilteringApp.Core", "FilteringApp\FilteringApp.Core\FilteringApp.Core.csproj", "{E6C98AD3-E13F-4291-90B0-DE00F0B13EFD}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CheckUserInput", "CheckUserInput", "{7001AD1E-5771-41A1-84A1-1B4BD062C368}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckUserInput.Core", "CheckUserInput\CheckUserInput.Core\CheckUserInput.Core.csproj", "{361BB720-8EAF-40B0-92A5-53D46BD4AEF5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +27,10 @@ Global
 		{E6C98AD3-E13F-4291-90B0-DE00F0B13EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E6C98AD3-E13F-4291-90B0-DE00F0B13EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E6C98AD3-E13F-4291-90B0-DE00F0B13EFD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{361BB720-8EAF-40B0-92A5-53D46BD4AEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{361BB720-8EAF-40B0-92A5-53D46BD4AEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{361BB720-8EAF-40B0-92A5-53D46BD4AEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{361BB720-8EAF-40B0-92A5-53D46BD4AEF5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +38,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{8AC14204-A94B-4BE1-8262-D481A076F63F} = {60C816AC-C435-4016-BC9A-C6CC1BFDDAD2}
 		{E6C98AD3-E13F-4291-90B0-DE00F0B13EFD} = {60C816AC-C435-4016-BC9A-C6CC1BFDDAD2}
+		{361BB720-8EAF-40B0-92A5-53D46BD4AEF5} = {7001AD1E-5771-41A1-84A1-1B4BD062C368}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C65EAA5-6CCD-4B40-B3C1-D0AB7FDE3B91}

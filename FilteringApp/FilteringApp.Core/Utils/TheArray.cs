@@ -42,11 +42,16 @@ namespace FilteringApp.Core.Utils
 
         public void DisplayResults(List<int> result)
         {
-            Console.WriteLine("This is your set: ");
+            Console.WriteLine("This is your filtered set: ");
             foreach (var item in result)
             {
-                Console.Write(" " + item + " ");
+                Console.WriteLine(" " + item + " ");
             }
+        }
+
+        public void DisplaySummingResults(int theSum)
+        {
+            Console.WriteLine("This is the sum of array elements: " + theSum);
         }
 
     }
