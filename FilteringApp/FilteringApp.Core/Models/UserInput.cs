@@ -2,7 +2,13 @@
 {
     public class UserInput
     {
-        public int[] UserArray { get; set; }
-        public int IntValue { get; set; }
+        public UserInput(int[] userArray, int intValue)
+        {
+            UserArray = userArray;
+            IntValue = intValue;
+        }
+
+        public int[] UserArray { get; }
+        public int IntValue { get; }
     }
 }

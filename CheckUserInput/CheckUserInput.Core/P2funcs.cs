@@ -2,16 +2,17 @@
 
 namespace CheckUserInput.Core
 {
+    // delete class, move mothod to ArrayUtils as static method
     public class P2funcs
     {
-        public int AddArrayElements(Array array)
+        public int AddArrayElements(int[] array)
+            //why never use array objects btw? It worked :D
         {
-            int[] arrayToAdd = (int[])array;
-            var len = arrayToAdd.Length;
+            var arrayToAdd = (int[])array; // poczytać o kastingu, usunąć tą linijkę
             var theSum = 0;
-            for(int i = 0; i < len; i++)
+            foreach (var item in arrayToAdd)
             {
-                 theSum = theSum + arrayToAdd[i];
+                theSum += arrayToAdd[item]; // tu jest coś nie tak :d
             }
             return theSum; 
         }
