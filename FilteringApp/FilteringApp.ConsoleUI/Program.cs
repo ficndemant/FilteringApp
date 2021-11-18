@@ -2,6 +2,7 @@
 using FilteringApp.Core.Utils;
 using CheckUserInput.Core;
 using System;
+using System.Collections.Generic;
 
 namespace FilteringApp.ConsoleUI
 {
@@ -11,67 +12,69 @@ namespace FilteringApp.ConsoleUI
         {
             var arrayNumberOK = true;
             var userValueOK = true;
-            var userInput = new UserInput();
-            //string[] stringArray = new String[0] { };
-            //int len = stringArray.Length;
-            //int[] array = new int[len];
-            int[] array2 = new int[0] { };
             Console.Clear();
+
+            int[] array = new int[0];
+            int intValue = 0;
             do
             {
-                Console.WriteLine("Please provide INT numbers for the array, separated by commas (,).");
-                string[] stringArray = Console.ReadLine().Split(',');
-                int len = stringArray.Length;
-                int[] array = new int[len];
+                Console.WriteLine("Please provide INT numbers for the array, separated by commas (for example like 1,2,3,4,...,12321,21433).");
+                var stringArray = Console.ReadLine().Split(',');
+                array = new int[stringArray.Length];
 
-                for (int i = 0; i < len; i++)
+                for (int i = 0; i < stringArray.Length; i++)
                 {
-                    //array[i] = Convert.ToInt32(stringArray[i]);
-                    string v = stringArray[i];
-                    var ov = 0;
-                    if (!int.TryParse(v, out ov))
+                    // zmienic nazwe oovalue
+                    if (!int.TryParse(stringArray[i], out var oovalue))
                     {
-                        Console.WriteLine("Wrong Input in array: " + v + " Postion :" + (i + 1));
+                        Console.WriteLine($"Wrong Input in array: {stringArray[i]} Postion :{i + 1}");
                         arrayNumberOK = false;
                     }
                     else
                     {
-                        array[i] = Convert.ToInt32(stringArray[i]);
+                        array[i] = oovalue;
                         arrayNumberOK = true;
                     }
                 }
-                array2 = array;
-
-                //var userInput = new UserInput();
-                userInput.UserArray = array;
 
                 Console.WriteLine("Please provide an INT value for filtering the array.");
-                //int value = Convert.ToInt32(Console.ReadLine());
+                
                 var value = Console.ReadLine();
-                var ovalue = 0;
-                var value2 = 0;
-                if (!int.TryParse(value, out ovalue))
+                if (!int.TryParse(value, out intValue))
                 {
                     userValueOK = false;
-                    Console.WriteLine("Wrong Input of filtering value: " + value);
+                    Console.WriteLine($"Wrong Input of filtering value: {value}");
                 }
                 else
                 {
-                    value2 = Convert.ToInt32(ovalue);
                     userValueOK = true;
                 }
-                userInput.IntValue = value2;
-            } while (arrayNumberOK==false && userValueOK==false);
 
-                var theArray = new TheArray();
-                //Console.WriteLine("Array values filtered with filter value are: ");
-                theArray.DisplayResults(theArray.FilterOutResults(userInput));
+            } while (arrayNumberOK == false && userValueOK == false);
 
-                // here i call addition
-                var p2funcs = new P2funcs();
-            //theArray.DisplayResults(p2funcs.AddArrayElements());
-            theArray.DisplaySummingResults(p2funcs.AddArrayElements(array2));
-            
+            var userInput = new UserInput(array, intValue);
+            var filteredValue = ArrayUtils.FilterOutResults(userInput);
+
+            // here i call addition
+            //var p2funcs = new P2funcs();
+            //P2funcs.AddArrayElements(array);
+
+            DisplayResults(filteredValue);
+        }
+
+
+        public static void DisplayResults(List<int> result)
+        {
+            Console.WriteLine("This is your filtered set: ");
+            foreach (var item in result)
+            {
+                Console.WriteLine($" {item} ");
+            }
+        }
+
+        public void DisplaySummingResults(int theSum)
+        {
+            Console.WriteLine($"This is the sum of array elements: {theSum}");
         }
     }
 }

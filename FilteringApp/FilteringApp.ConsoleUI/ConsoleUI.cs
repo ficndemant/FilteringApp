@@ -9,18 +9,11 @@ namespace FilteringApp.ConsoleUI
 {
     public class ConsoleUI
     {
-          private void CalculateResult(UserInput userInput)
+        private void CalculateResult(UserInput userInput)
         {
-            var theArray = new TheArray();
+            var theArray = new ArrayUtils();
             Console.WriteLine("Array values filtered with filter value are: ");
             theArray.DisplayResults(theArray.FilterOutResults(userInput));
         }
-
-        //public ConsoleUI()
-        //{
-
-        //}
-
-
     }
 }
