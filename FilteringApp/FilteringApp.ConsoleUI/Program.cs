@@ -1,6 +1,5 @@
 ﻿using FilteringApp.Core.Models;
 using FilteringApp.Core.Utils;
-using CheckUserInput.Core;
 using System;
 using System.Collections.Generic;
 
@@ -10,69 +9,77 @@ namespace FilteringApp.ConsoleUI
     {
         static void Main(string[] args)
         {
-            var arrayNumberOK = true;
-            var userValueOK = true;
             Console.Clear();
 
             int[] array = new int[0];
-            int intValue = 0;
-            do
+            //int intValue;
+
+            
+            
+            
+            
+            var isArrayValid = false;
+            var error = "";
+
+            var arrayPackage = new ArrayParseResult(isArrayValid, array, error);
+            while (isArrayValid == false)
             {
                 Console.WriteLine("Please provide INT numbers for the array, separated by commas (for example like 1,2,3,4,...,12321,21433).");
                 var stringArray = Console.ReadLine().Split(',');
-                array = new int[stringArray.Length];
-
-                for (int i = 0; i < stringArray.Length; i++)
-                {
-                    // zmienic nazwe oovalue
-                    if (!int.TryParse(stringArray[i], out var oovalue))
-                    {
-                        Console.WriteLine($"Wrong Input in array: {stringArray[i]} Postion :{i + 1}");
-                        arrayNumberOK = false;
-                    }
-                    else
-                    {
-                        array[i] = oovalue;
-                        arrayNumberOK = true;
-                    }
+                arrayPackage = ArrayUtils.CheckArray(stringArray);
+                if (arrayPackage.IsValid == false){
+                    Console.WriteLine(arrayPackage.Error);
                 }
+                else {
+                    isArrayValid = arrayPackage.IsValid;
+                    error = "";
+                }
+            }
 
+
+
+
+
+            var intValue = 0;
+            var isPackageValid = false;
+            var isFilteringValueValid = false;
+            var userValueParseResults = new UserValueParseResult(intValue);
+
+            while (isFilteringValueValid == false)
+            {
                 Console.WriteLine("Please provide an INT value for filtering the array.");
-                
                 var value = Console.ReadLine();
-                if (!int.TryParse(value, out intValue))
+                var intValueObject = ArrayUtils.CheckFilteringValue(value);
+                
+                if (intValueObject.IsValid == false)
                 {
-                    userValueOK = false;
-                    Console.WriteLine($"Wrong Input of filtering value: {value}");
+                    Console.WriteLine(userValueParseResults.Error);
                 }
                 else
                 {
-                    userValueOK = true;
+                    intValue = intValueObject.Value;
+                    isFilteringValueValid = true;                   
                 }
+            }
 
-            } while (arrayNumberOK == false && userValueOK == false);
 
-            var userInput = new UserInput(array, intValue);
+            var userInput = new UserInput(arrayPackage.Array, intValue);
             var filteredValue = ArrayUtils.FilterOutResults(userInput);
+            DispplayFilteringResults(filteredValue);
+            DisplaySummingResults(ArrayUtils.AddArrayElements(arrayPackage.Array));
 
-            // here i call addition
-            //var p2funcs = new P2funcs();
-            //P2funcs.AddArrayElements(array);
-
-            DisplayResults(filteredValue);
         }
 
-
-        public static void DisplayResults(List<int> result)
+        public static void DispplayFilteringResults(List<int> result)
         {
             Console.WriteLine("This is your filtered set: ");
             foreach (var item in result)
             {
-                Console.WriteLine($" {item} ");
+                Console.WriteLine($"{item} ");
             }
         }
 
-        public void DisplaySummingResults(int theSum)
+        public static void DisplaySummingResults(int theSum)
         {
             Console.WriteLine($"This is the sum of array elements: {theSum}");
         }
