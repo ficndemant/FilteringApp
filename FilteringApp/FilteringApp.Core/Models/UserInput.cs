@@ -10,7 +10,5 @@
 
         public int[] UserArray { get; }
         public int IntValue { get; }
-
-        // DATA OBJECT is HIA above!!!
     }
 }
