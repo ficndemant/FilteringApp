@@ -6,7 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\CheckUserInput\CheckUserInput.Core\CheckUserInput.Core.csproj" />
     <ProjectReference Include="..\FilteringApp.Core\FilteringApp.Core.csproj" />
 	  <!--!!!!!!!!!!!!!!! console able to use core, but not the other way around !!!!!!!!!!!!!!!-->
   </ItemGroup>
