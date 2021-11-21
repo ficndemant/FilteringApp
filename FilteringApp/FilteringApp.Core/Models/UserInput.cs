@@ -9,6 +9,7 @@
         }
 
         public int[] UserArray { get; }
+
         public int IntValue { get; }
     }
 }

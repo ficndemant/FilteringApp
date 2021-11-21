@@ -24,8 +24,10 @@ namespace FilteringApp.Core.Utils
                     }
                 }
             }
+
             return result;
         }
+
         public static int AddArrayElements(int[] array)
         {
             var theSum = 0;
@@ -33,33 +35,34 @@ namespace FilteringApp.Core.Utils
             {
                 theSum += item;
             }
+
             return theSum;
         }
+
         public static ArrayParseResult CheckArray(string[] stringArray)
         {
             var array = new int[stringArray.Length];
-            var arrayParseResults = new ArrayParseResult(array);
-            for (int i = 0; i < stringArray.Length; i++)
+            for (int i = 0; i < array.Length; i++)
             {
-                if (!int.TryParse(stringArray[i], out var value) || string.IsNullOrWhiteSpace(stringArray[i]))
+                if (!int.TryParse(stringArray[i], out var value))
                 {
                     var error = $"Wrong Input in array: {stringArray[i]} Postion :{i + 1}";
                     return new ArrayParseResult(error);
                 }
                 else
                 {
-                    arrayParseResults.Array[i] = value;
+                    array[i] = value;
                 }
             }
-            return arrayParseResults;
+
+            return new ArrayParseResult(array);
         }
+
         public static UserValueParseResult CheckFilteringValue(string value)
         {
             var userInput = value;
-            var intValue = 0;
-            var userValueParseResults = new UserValueParseResult(intValue);
 
-            if (!int.TryParse((string)userInput, out var val) || string.IsNullOrWhiteSpace(value))
+            if (!int.TryParse(userInput, out var val))
             {
                 var error = $"Wrong Input of filtering value: {userInput}";
                 return new UserValueParseResult(error);
