@@ -7,6 +7,7 @@
             IsValid = true;
             Value = value;
         }
+
         public UserValueParseResult(string error)
         {
             IsValid = false;

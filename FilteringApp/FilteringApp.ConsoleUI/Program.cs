@@ -51,6 +51,7 @@ namespace FilteringApp.ConsoleUI
             DispplayFilteringResults(filteredValue);
             DisplaySummingResults(ArrayUtils.AddArrayElements(arrayPackage.Array));
         }
+
         public static void DispplayFilteringResults(List<int> result)
         {
             Console.WriteLine("This is your filtered set: ");
@@ -59,6 +60,7 @@ namespace FilteringApp.ConsoleUI
                 Console.WriteLine($"{item} ");
             }
         }
+
         public static void DisplaySummingResults(int theSum)
         {
             Console.WriteLine($"This is the sum of array elements: {theSum}");

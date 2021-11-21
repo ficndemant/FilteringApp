@@ -7,6 +7,7 @@
             IsValid = true;
             Array = array;
         }
+
         public ArrayParseResult(string error)
         {
             IsValid = false;
