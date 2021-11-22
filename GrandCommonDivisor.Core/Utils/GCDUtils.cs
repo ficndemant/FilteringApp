@@ -5,22 +5,22 @@ namespace GrandCommonDivisor.Core
 {
     public static class GCDUtils
     {
-        public static int CalculateGCD(int firstN, int secondN)
+        public static int CalculateGCD(int first, int second)
         {
-            if (secondN == 0)
+            if (second == 0)
             {
-                return firstN;
+                return first;
             }
-            int modulo = firstN % secondN;
 
-            return CalculateGCD(secondN, modulo);
+            int modulo = first % second;
+
+            return CalculateGCD(second, modulo);
         }
 
         public static NumberParseResult CheckNumber(string number)
         {
-            int num;
 
-            if (!int.TryParse(number, out num))
+            if (!int.TryParse(number, out var num))
             {
                 var error = "Please try typing in again!";
                 return new NumberParseResult(error);
@@ -29,8 +29,4 @@ namespace GrandCommonDivisor.Core
             return new NumberParseResult(num);
         }
     }
-
-
-
-    
 }
