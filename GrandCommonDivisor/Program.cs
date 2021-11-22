@@ -8,47 +8,32 @@ namespace GrandCommonDivisor.ConsoleUI
     {
         static void Main(string[] args)
         {
+            var first = IsItValid("Hello User!, Please provide first number.");
+            var second = IsItValid("Hello User!, Please provide second number.");
+            Console.WriteLine($"Here are the numbers: first - {first}, second - {second} .");
+            var result = GCDUtils.CalculateGCD(first, second);
+            Console.WriteLine($"The GCD for {first} and {second} is {result}");
+        }
 
-            var isFirstValid = false;
-            var first = new NumberParseResult();
-
-
-            while (isFirstValid == false)
+        private static int IsItValid(string text)
+        {
+            var isValid = false;
+            NumberParseResult number = null;
+            while (isValid == false)
             {
-                Console.WriteLine("Hello User!, Please provide first number.");
-                first = GCDUtils.CheckNumber(Console.ReadLine());
-                if (first.IsValid == false)
+                Console.WriteLine($"{text}");
+                number = GCDUtils.CheckNumber(Console.ReadLine());
+                if (number.IsValid == false)
                 {
-                    Console.WriteLine(first.Error);
+                    Console.WriteLine(number.Error);
                 }
                 else
                 {
-                    isFirstValid = true;
+                    isValid = true;
                 }
-                    
             }
 
-            var isSecondValid = false;
-            var second = new NumberParseResult();
-
-            while (isSecondValid == false)
-            {
-                Console.WriteLine("Hello User!, Please provide second number.");
-                second = GCDUtils.CheckNumber(Console.ReadLine());
-                if (second.IsValid == false)
-                {
-                    Console.WriteLine(second.Error);
-                }
-                else
-                {
-                    isSecondValid = true;
-                }
-
-            }
-
-            Console.WriteLine($"Here are the numbers: first - {first.Number}, second - {second.Number} .");
-            var p = GCDUtils.CalculateGCD(first.Number, second.Number);
-            Console.WriteLine($"The GCD for {first.Number} and {second.Number} is {p}");
+            return number.Number;            
         }
     }
 }
