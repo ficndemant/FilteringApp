@@ -5,18 +5,6 @@ namespace GrandCommonDivisor.Core
 {
     public static class GCDUtils
     {
-        public static int CalculateGCD(int first, int second)
-        {
-            if (second == 0)
-            {
-                return first;
-            }
-
-            int modulo = first % second;
-
-            return CalculateGCD(second, modulo);
-        }
-
         public static NumberParseResult CheckNumber(string number)
         {
 
@@ -27,6 +15,25 @@ namespace GrandCommonDivisor.Core
             }
             
             return new NumberParseResult(num);
+        }
+
+        public static int CalculateGCD(int first, int second)
+        {
+            while (first >= 1)
+            {               
+                int modulo = first % second;
+                if (modulo == 0)
+                {
+                    break;  
+                }
+                else
+                {
+                    first = second;
+                    second = modulo;
+                }
+            }
+
+            return second;
         }
     }
 }
