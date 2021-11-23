@@ -8,9 +8,9 @@ namespace GrandCommonDivisor.ConsoleUI
     {
         static void Main(string[] args)
         {
-            var first = IsItValid("Hello User!, Please provide first number.");
-            var second = IsItValid("Hello User!, Please provide second number.");
-            Console.WriteLine($"Here are the numbers: first - {first}, second - {second} .");
+            var first = IsItValid("Hello User!, Please provide the first number.");
+            var second = IsItValid("Please provide the second number.");
+            Console.WriteLine($"Here are your numbers: first: {first}, second: {second} .");
             var result = GCDUtils.CalculateGCD(first, second);
             Console.WriteLine($"The GCD for {first} and {second} is {result}");
         }
