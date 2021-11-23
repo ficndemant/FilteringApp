@@ -1,15 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GrandCommonDivisor.Core.models
+﻿namespace GrandCommonDivisor.Core.models
 {
     public class NumberParseResult
     {
-        public NumberParseResult()
-        {
-
-        }
         public NumberParseResult(int number)
         {
             IsValid = true;
