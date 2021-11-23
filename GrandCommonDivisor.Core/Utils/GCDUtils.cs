@@ -10,8 +10,16 @@ namespace GrandCommonDivisor.Core
 
             if (!int.TryParse(number, out var num))
             {
-                var error = "Please try typing in again!";
+                var error = "Please try number again!";
                 return new NumberParseResult(error);
+            }
+            else
+            {
+                if (num == 0)
+                {
+                    var error = "You can't use '0'!";
+                    return new NumberParseResult(error);
+                }
             }
             
             return new NumberParseResult(num);
