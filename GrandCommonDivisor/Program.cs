@@ -21,7 +21,7 @@ namespace GrandCommonDivisor.ConsoleUI
             NumberParseResult number = null;
             while (isValid == false)
             {
-                Console.WriteLine($"{text}");
+                Console.WriteLine(text);
                 number = GCDUtils.CheckInput(Console.ReadLine());
                 if (number.IsValid == false)
                 {
