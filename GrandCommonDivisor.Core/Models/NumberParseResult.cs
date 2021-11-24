@@ -1,4 +1,4 @@
-﻿namespace GrandCommonDivisor.Core.models
+﻿namespace GrandCommonDivisor.Core.Models
 {
     public class NumberParseResult
     {

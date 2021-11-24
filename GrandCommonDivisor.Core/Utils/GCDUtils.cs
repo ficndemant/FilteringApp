@@ -1,4 +1,4 @@
-﻿using GrandCommonDivisor.Core.models;
+﻿using GrandCommonDivisor.Core.Models;
 
 namespace GrandCommonDivisor.Core
 {

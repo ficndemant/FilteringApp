@@ -1,6 +1,6 @@
 ﻿using System;
 using GrandCommonDivisor.Core;
-using GrandCommonDivisor.Core.models;
+using GrandCommonDivisor.Core.Models;
 
 namespace GrandCommonDivisor.ConsoleUI
 {
@@ -8,14 +8,14 @@ namespace GrandCommonDivisor.ConsoleUI
     {
         static void Main(string[] args)
         {
-            var first = CheckNumber("Hello User!, Please provide the first number.");
-            var second = CheckNumber("Please provide the second number.");
+            var first = ReadUserInput("Hello User!, Please provide the first number.");
+            var second = ReadUserInput("Please provide the second number.");
             Console.WriteLine($"Here are your numbers: first: {first}, second: {second} .");
             var result = GCDUtils.CalculateGCD(first, second);
             Console.WriteLine($"The GCD for {first} and {second} is {result}");
         }
 
-        private static int CheckNumber(string text)
+        private static int ReadUserInput(string text)
         {
             var isValid = false;
             NumberParseResult number = null;
