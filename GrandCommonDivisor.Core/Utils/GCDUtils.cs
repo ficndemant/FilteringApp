@@ -1,4 +1,5 @@
 ﻿using GrandCommonDivisor.Core.Models;
+using System;
 
 namespace GrandCommonDivisor.Core
 {
@@ -6,19 +7,14 @@ namespace GrandCommonDivisor.Core
     {
         public static NumberParseResult CheckInput(string number)
         {
-            if (!int.TryParse(number, out var num))
+            try
             {
-                var error = "Please try number again!";
-                return new NumberParseResult(error);
+                return new NumberParseResult(int.Parse(number));
             }
-            
-            if (num == 0)
+            catch (FormatException ex)
             {
-                var error = "You can't use '0'!";
-                return new NumberParseResult(error);
+                throw;
             }
-                        
-            return new NumberParseResult(num);
         }
 
         public static int CalculateGCD(int first, int second)
