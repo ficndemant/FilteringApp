@@ -1,5 +1,6 @@
 ﻿using FilteringApp.Core.Models;
 using System.Collections.Generic;
+using System;
 
 namespace FilteringApp.Core.Utils
 {
@@ -39,38 +40,75 @@ namespace FilteringApp.Core.Utils
             return theSum;
         }
 
-        public static ArrayParseResult CheckArray(string[] stringArray)
+        public static Array CheckArray(string[] stringArray)
         {
             var array = new int[stringArray.Length];
+
             for (int i = 0; i < array.Length; i++)
             {
                 if (!int.TryParse(stringArray[i], out var value))
                 {
-                    var error = $"Wrong Input in array: {stringArray[i]} Postion :{i + 1}";
-                    return new ArrayParseResult(error);
+                    //var error = $"Wrong Input in array: {stringArray[i]} Postion :{i + 1}";
+                    //return new ArrayParseResult(error);
+                    throw new ArgumentException($"Wrong Input in array: {stringArray[i]} Postion :{i + 1}");
                 }
-                else
-                {
                     array[i] = value;
-                }
+                
             }
-
-            return new ArrayParseResult(array);
+            return array;
+            //return new ArrayParseResult(array);
         }
 
-        public static UserValueParseResult CheckFilteringValue(string value)
+        //public static ArrayParseResult CheckArray(string[] stringArray)
+        //{
+        //    var array = new int[stringArray.Length];
+
+        //    for (int i = 0; i < array.Length; i++)
+        //    {
+        //        if (!int.TryParse(stringArray[i], out var value))
+        //        {
+        //            var error = $"Wrong Input in array: {stringArray[i]} Postion :{i + 1}";
+        //            return new ArrayParseResult(error);
+        //        }
+        //        else
+        //        {
+        //            array[i] = value;
+        //        }
+        //    }
+
+        //    return new ArrayParseResult(array);
+        //}
+
+        public static int CheckFilteringValue(string value)
         {
             var userInput = value;
 
             if (!int.TryParse(userInput, out var val))
             {
-                var error = $"Wrong Input of filtering value: {userInput}";
-                return new UserValueParseResult(error);
+                //var error = $"Wrong Input of filtering value: {userInput}";
+                //return new UserValueParseResult(error);
+                throw new ArgumentException($"Wrong Input of filtering value: {userInput}");
             }
             else
             {
-                return new UserValueParseResult(val);
+                //return new UserValueParseResult(val);
+                return val;
             }
         }
+
+        //public static UserValueParseResult CheckFilteringValue(string value)
+        //{
+        //    var userInput = value;
+
+        //    if (!int.TryParse(userInput, out var val))
+        //    {
+        //        var error = $"Wrong Input of filtering value: {userInput}";
+        //        return new UserValueParseResult(error);
+        //    }
+        //    else
+        //    {
+        //        return new UserValueParseResult(val);
+        //    }
+        //}
     }
 }
