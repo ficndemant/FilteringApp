@@ -1,25 +1,44 @@
-﻿using GrandCommonDivisor.Core.Models;
-using System;
+﻿using System;
 
 namespace GrandCommonDivisor.Core
 {
     public static class GCDUtils
     {
-        public static NumberParseResult CheckInput(string number)
+        //public static int CheckInput(string number)
+        //{
+        //    int num;
+        //    if (!int.TryParse(number, out num))
+        //    {
+        //        throw new ArgumentException("Please try number again!");                   
+        //    }
+
+        //    if (num == 0)
+        //    {
+        //        throw new ArgumentException("You can't use '0'!");
+        //    }
+            
+        //    return num;
+        //}
+
+        public static int CheckInput(this string number)
         {
-            try
+            int num;
+            if (!int.TryParse(number, out num))
             {
-                return new NumberParseResult(int.Parse(number));
+                throw new ArgumentException("Please try number again!");
             }
-            catch (FormatException ex)
+
+            if (num == 0)
             {
-                throw;
+                throw new ArgumentException("You can't use '0'!");
             }
+
+            return num;
         }
 
         public static int CalculateGCD(int first, int second)
         {
-            while (first >= 1)
+            while (first != 0)
             {               
                 int modulo = first % second;
                 if (modulo == 0)
@@ -31,7 +50,7 @@ namespace GrandCommonDivisor.Core
                 second = modulo;               
             }
 
-            return second;
+            return Math.Abs(second);
         }
     }
 }
