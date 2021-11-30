@@ -48,36 +48,13 @@ namespace FilteringApp.Core.Utils
             {
                 if (!int.TryParse(stringArray[i], out var value))
                 {
-                    //var error = $"Wrong Input in array: {stringArray[i]} Postion :{i + 1}";
-                    //return new ArrayParseResult(error);
                     throw new ArgumentException($"Wrong Input in array: {stringArray[i]} Postion :{i + 1}");
                 }
                     array[i] = value;
                 
             }
             return array;
-            //return new ArrayParseResult(array);
         }
-
-        //public static ArrayParseResult CheckArray(string[] stringArray)
-        //{
-        //    var array = new int[stringArray.Length];
-
-        //    for (int i = 0; i < array.Length; i++)
-        //    {
-        //        if (!int.TryParse(stringArray[i], out var value))
-        //        {
-        //            var error = $"Wrong Input in array: {stringArray[i]} Postion :{i + 1}";
-        //            return new ArrayParseResult(error);
-        //        }
-        //        else
-        //        {
-        //            array[i] = value;
-        //        }
-        //    }
-
-        //    return new ArrayParseResult(array);
-        //}
 
         public static int CheckFilteringValue(string value)
         {
@@ -85,30 +62,12 @@ namespace FilteringApp.Core.Utils
 
             if (!int.TryParse(userInput, out var val))
             {
-                //var error = $"Wrong Input of filtering value: {userInput}";
-                //return new UserValueParseResult(error);
                 throw new ArgumentException($"Wrong Input of filtering value: {userInput}");
             }
             else
             {
-                //return new UserValueParseResult(val);
                 return val;
             }
         }
-
-        //public static UserValueParseResult CheckFilteringValue(string value)
-        //{
-        //    var userInput = value;
-
-        //    if (!int.TryParse(userInput, out var val))
-        //    {
-        //        var error = $"Wrong Input of filtering value: {userInput}";
-        //        return new UserValueParseResult(error);
-        //    }
-        //    else
-        //    {
-        //        return new UserValueParseResult(val);
-        //    }
-        //}
     }
 }
