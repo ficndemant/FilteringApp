@@ -11,9 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilteringApp.Core", "Filter
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "GCD", "GCD", "{A1FD278A-5635-44D0-9EFC-286EA44DA7F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrandCommonDivisor.ConsoleUI", "GrandCommonDivisor\GrandCommonDivisor.ConsoleUI.csproj", "{897C70BC-A580-40C9-A8D6-563706AF89EB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrandCommonDivisor.ConsoleUI", "GCD\GrandCommonDivisor\GrandCommonDivisor.ConsoleUI.csproj", "{897C70BC-A580-40C9-A8D6-563706AF89EB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrandCommonDivisor.Core", "GrandCommonDivisor.Core\GrandCommonDivisor.Core.csproj", "{EBF254E7-33E6-429C-AB40-836AAEF26232}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrandCommonDivisor.Core", "GCD\GrandCommonDivisor.Core\GrandCommonDivisor.Core.csproj", "{EBF254E7-33E6-429C-AB40-836AAEF26232}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

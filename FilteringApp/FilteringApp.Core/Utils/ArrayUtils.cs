@@ -6,7 +6,7 @@ namespace FilteringApp.Core.Utils
 {
     public static class ArrayUtils
     {
-        public static List<int> FilterOutResults(UserInput input)
+        public static List<int> FilterOutResults(this UserInput input)
         {
             var result = new List<int>();
             foreach (int v in input.UserArray)
@@ -29,7 +29,7 @@ namespace FilteringApp.Core.Utils
             return result;
         }
 
-        public static int AddArrayElements(int[] array)
+        public static int AddArrayElements(this int[] array)
         {
             var theSum = 0;
             foreach (int item in array)
@@ -40,7 +40,7 @@ namespace FilteringApp.Core.Utils
             return theSum;
         }
 
-        public static Array CheckArray(string[] stringArray)
+        public static Array CheckArray(this string[] stringArray)
         {
             var array = new int[stringArray.Length];
 
@@ -56,7 +56,7 @@ namespace FilteringApp.Core.Utils
             return array;
         }
 
-        public static int CheckFilteringValue(string value)
+        public static int CheckFilteringValue(this string value)
         {
             var userInput = value;
 

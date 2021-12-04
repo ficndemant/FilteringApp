@@ -12,9 +12,8 @@ namespace FilteringApp.ConsoleUI
             int[] array = (int[])CycleArrayReading();
             var intValue = (int)CycleFilteringValueReading();
             var userInput = new UserInput(array, intValue);
-            var filteredValue = ArrayUtils.FilterOutResults(userInput);
-            DispplayFilteringResults(filteredValue);
-            DisplaySummingResults(ArrayUtils.AddArrayElements(array));
+            DisplayFilteringResults(userInput.FilterOutResults());
+            DisplaySummingResults(array.AddArrayElements());
         }
 
         public static Array CycleArrayReading()
@@ -51,7 +50,7 @@ namespace FilteringApp.ConsoleUI
             Console.WriteLine("Please provide INT numbers for the array, separated by commas (for example like 1,2,3,4,...,12321,21433).");
             var stringArray = Console.ReadLine().Split(',');
 
-            return ArrayUtils.CheckArray(stringArray); 
+            return stringArray.CheckArray();
         }
 
         public static int ReadUserFilteringNumber()
@@ -60,10 +59,10 @@ namespace FilteringApp.ConsoleUI
             // ! Need to find another better way to handle more than one digit, eg. search for "12" or "123"
             var value = Console.ReadLine();
 
-            return ArrayUtils.CheckFilteringValue(value);
+            return value.CheckFilteringValue();
         }
 
-        public static void DispplayFilteringResults(List<int> result)
+        public static void DisplayFilteringResults(List<int> result)
         {
             Console.WriteLine("This is your filtered set: ");
             foreach (var item in result)
