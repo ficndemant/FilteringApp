@@ -14,6 +14,8 @@ namespace FilteringApp.ConsoleUI
             var userInput = new UserInput(array, intValue);
             DisplayFilteringResults(userInput.FilterOutResults());
             DisplaySummingResults(array.AddArrayElements());
+            DisplayMergeSortResults(array.DoMergeSort());
+            DisplayMergeSortResults(array.DoMergeSort(3,9));
         }
 
         public static Array CycleArrayReading()
@@ -74,6 +76,16 @@ namespace FilteringApp.ConsoleUI
         public static void DisplaySummingResults(int theSum)
         {
             Console.WriteLine($"This is the sum of array elements: {theSum}");
+        }
+
+        public static void DisplayMergeSortResults(Array array)
+        {
+            Console.WriteLine("Sorted array looks like this: ");
+            foreach (var number in array)
+            {
+                Console.WriteLine(number);
+            }
+            Console.WriteLine();
         }
         
     }
