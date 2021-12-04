@@ -16,6 +16,8 @@ namespace GrandCommonDivisor.ConsoleUI
                 {
                     var result = GCDUtils.CalculateGCD(first, second);                   
                     Console.WriteLine($"The GCD for {first} and {second} is {result}");
+                    //var result2 = GCDUtils.CalculateGCD(7,21);
+                    //Console.WriteLine($"The GCD for MULTI is {result2}");
                 }      
             }
             catch (Exception ex)

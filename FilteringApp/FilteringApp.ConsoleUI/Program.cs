@@ -75,5 +75,6 @@ namespace FilteringApp.ConsoleUI
         {
             Console.WriteLine($"This is the sum of array elements: {theSum}");
         }
+        
     }
 }
