@@ -36,5 +36,31 @@ namespace GrandCommonDivisor.Core
 
             return Math.Abs(second);
         }
+
+
+        public static int CalculateGCD(params int[] args)
+        {
+                int helper = args[0];
+                for (int i = 0; i< args.Length - 1 ; i++)
+                {
+                    var first = helper;
+                    var second = args[i + 1];
+                    while (first != 0)
+                    {
+                        int modulo = first % second;
+                        if (modulo == 0)
+                        {
+                            break;
+                        }
+
+                        first = second;
+                        second = modulo;
+                    }
+
+                    helper = second;
+                }
+           
+                return Math.Abs(helper);
+        }
     }
 }
