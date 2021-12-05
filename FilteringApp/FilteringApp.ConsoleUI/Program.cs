@@ -14,8 +14,9 @@ namespace FilteringApp.ConsoleUI
             var userInput = new UserInput(array, intValue);
             DisplayFilteringResults(userInput.FilterOutResults());
             DisplaySummingResults(array.AddArrayElements());
-            DisplayMergeSortResults(array.DoMergeSort());
-            DisplayMergeSortResults(array.DoMergeSort(3,9));
+            //DisplayMergeSortResults(array.DoMergeSort());
+            //DisplayMergeSortResults(array.DoMergeSort(3,9));
+            DisplayMinMax(array.FindMinAndMax());
         }
 
         public static Array CycleArrayReading()
@@ -87,6 +88,15 @@ namespace FilteringApp.ConsoleUI
             }
             Console.WriteLine();
         }
+
+        public static void DisplayMinMax(Tuple<int,int> tuple)
+        {
+            Console.WriteLine($"The minimal element of the array is: {tuple.Item1}, the maximal element of the array is: {tuple.Item2}.");
+        }
+
+            
+
+            
         
     }
 }
