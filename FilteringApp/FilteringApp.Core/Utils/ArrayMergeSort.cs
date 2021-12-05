@@ -23,14 +23,14 @@ namespace FilteringApp.Core.Utils
             return sortedNumbers;
         }
 
-        public static int[] DoMergeSort(this int[] numbers, int startIndex, int stopIndex)
-        {
-            var sortedNumbers = MergeSort(numbers,startIndex,stopIndex);
-            for (int i = 0; i < sortedNumbers.Length; i++)
-                numbers[i] = sortedNumbers[i];
+        //public static int[] DoMergeSort(this int[] numbers, int startIndex, int stopIndex)
+        //{
+        //    var sortedNumbers = MergeSort(numbers,startIndex,stopIndex);
+        //    for (int i = 0; i < sortedNumbers.Length; i++)
+        //        numbers[i] = sortedNumbers[i];
 
-            return sortedNumbers;
-        }
+        //    return sortedNumbers;
+        //}
 
         public static int[] MergeSort(int[] numbers)
         {
@@ -58,37 +58,37 @@ namespace FilteringApp.Core.Utils
             return Merge(leftList, rightList);
         }
 
-        public static int[] MergeSort(int[] numbers, int startIndex, int stopIndex)
-        {
-            var length = stopIndex - startIndex;
-            int[] range = new int[length];
-            for (int i=0; i<length; i++)
-            {
-                range[i] = numbers[i];
-            }
+        //public static int[] MergeSort(int[] numbers, int startIndex, int stopIndex)
+        //{
+        //    var length = stopIndex - startIndex;
+        //    int[] range = new int[length];
+        //    for (int i=0; i<length; i++)
+        //    {
+        //        range[i] = numbers[i];
+        //    }
 
-            if (range.Length <= 1)
-                return range;
+        //    if (range.Length <= 1)
+        //        return range;
 
-            var leftList = new List<int>();
-            var rightList = new List<int>();
-            for (int i = 0; i < range.Length; i++)
-            {
-                if (i % 2 == 0)
-                {
-                    leftList.Add(range[i]);
-                }
-                else
-                {
-                    rightList.Add(range[i]);
-                }
-            }
+        //    var leftList = new List<int>();
+        //    var rightList = new List<int>();
+        //    for (int i = 0; i < range.Length; i++)
+        //    {
+        //        if (i % 2 == 0)
+        //        {
+        //            leftList.Add(range[i]);
+        //        }
+        //        else
+        //        {
+        //            rightList.Add(range[i]);
+        //        }
+        //    }
 
-            leftList = MergeSort(leftList.ToArray()).ToList();
-            rightList = MergeSort(rightList.ToArray()).ToList();
+        //    leftList = MergeSort(leftList.ToArray()).ToList();
+        //    rightList = MergeSort(rightList.ToArray()).ToList();
 
-            return Merge(leftList, rightList);
-        }
+        //    return Merge(leftList, rightList);
+        //}
 
         public static int[] Merge(List<int> leftList, List<int> rightList)
         {
@@ -124,6 +124,34 @@ namespace FilteringApp.Core.Utils
         {
             result.Add(list.First());
             list.RemoveAt(0);
+        }
+
+        public static Tuple<int , int> FindMinAndMax(this int[] array)
+        {
+            int min = array[0];
+            int max = array[0];
+            for (int i=0; i<array.Length; i++)
+            {
+                if (array[i] < min)
+                {
+                    min = array[i];
+                }
+                if (array[i] > max)
+                {
+                    max = array[i];
+                }
+
+                //if (array[i] < min)
+                //{
+                //    min = array[i];
+                //}
+                //else
+                //if (array[i] > max)
+                //{
+                //    max = array[i];
+                //}
+            }
+            return Tuple.Create(min, max);
         }
     }
 }
