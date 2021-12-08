@@ -40,7 +40,7 @@ namespace FilteringApp.Core.Utils
             return theSum;
         }
 
-        public static Array CheckArray(this string[] stringArray)
+        public static int[] CheckArray(this string[] stringArray)
         {
             var array = new int[stringArray.Length];
 
