@@ -1,7 +1,9 @@
 ﻿using FilteringApp.Core.Models;
 using FilteringApp.Core.Utils;
+using FilteringApp.Core.Other;
 using System;
 using System.Collections.Generic;
+
 
 namespace FilteringApp.ConsoleUI
 {
@@ -9,21 +11,63 @@ namespace FilteringApp.ConsoleUI
     {
         static void Main(string[] args)
         {
-            int[] array = (int[])CycleArrayReading();
-            var intValue = (int)CycleFilteringValueReading();
-            var userInput = new UserInput(array, intValue);
-            DisplayFilteringResults(userInput.FilterOutResults());
-            DisplaySummingResults(array.AddArrayElements());
-            //DisplayMergeSortResults(array.DoMergeSort());
-            //DisplayMergeSortResults(array.DoMergeSort(3,9));
-            DisplayMinMax(array.FindMinAndMax());
+            FilterTheArray();
+            SumTheArray();
+            ArrayGetMinMax();
+            InstanceCountItself();              
         }
 
-        public static Array CycleArrayReading()
+        static void FilterTheArray()
+        {
+            var userInput = ValidateUserInput();
+            DisplayFilteringResults(userInput.FilterOutResults());
+            Console.ReadLine();
+        }
+
+        static void SumTheArray()
+        {
+            int[] array = CycleArrayReading();
+            DisplaySummingResults(array.AddArrayElements());
+            Console.ReadLine();
+        }
+
+        static void ArrayGetMinMax()
+        {
+            int[] array = CycleArrayReading();
+            DisplayMinMax(array.FindMinAndMax());
+            Console.ReadLine();
+        }
+
+        static UserInput ValidateUserInput()
+        {
+            int[] array = CycleArrayReading();
+            var intValue = CycleFilteringValueReading();
+            var userInput = new UserInput(array, intValue);
+
+            return userInput;
+        }
+
+        private static void InstanceCountItself()
+        {
+            CreateInstances();
+            Console.WriteLine($"Number of living instances of SelfInstanceCount Class is:  { SelfInstanceCount.activeCount}");
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
+            Console.ReadLine();
+        }
+
+        private static void CreateInstances()
+        {
+            new SelfInstanceCount();
+            new SelfInstanceCount();
+        }
+
+        public static int[] CycleArrayReading()
         {
             try
             {
-                return (int[])ReadUserArray();
+                return ReadUserArray();
             }
             catch (Exception ex)
             {
@@ -47,7 +91,7 @@ namespace FilteringApp.ConsoleUI
             }
         }
 
-        public static Array ReadUserArray()
+        public static int[] ReadUserArray()
         {
             Console.Clear();
             Console.WriteLine("Please provide INT numbers for the array, separated by commas (for example like 1,2,3,4,...,12321,21433).");
@@ -59,7 +103,6 @@ namespace FilteringApp.ConsoleUI
         public static int ReadUserFilteringNumber()
         {
             Console.WriteLine("Please provide a SINGLE DIGIT INT value for filtering the array.");
-            // ! Need to find another better way to handle more than one digit, eg. search for "12" or "123"
             var value = Console.ReadLine();
 
             return value.CheckFilteringValue();
@@ -89,14 +132,9 @@ namespace FilteringApp.ConsoleUI
             Console.WriteLine();
         }
 
-        public static void DisplayMinMax(Tuple<int,int> tuple)
+        public static void DisplayMinMax((int min, int max) tuple)
         {
-            Console.WriteLine($"The minimal element of the array is: {tuple.Item1}, the maximal element of the array is: {tuple.Item2}.");
-        }
-
-            
-
-            
-        
+            Console.WriteLine($"The minimal element of the array is: {tuple.min}, the maximal element of the array is: {tuple.max}.");
+        }  
     }
 }
