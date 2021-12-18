@@ -7,22 +7,16 @@ namespace GrandCommonDivisor.ConsoleUI
     {
         static void Main(string[] args)
         {
-            try
-            {   
-                var first = ReadUserInput("Hello User!, Please provide the first number.");
-                var second = ReadUserInput("Please provide the second number.");
-                Console.WriteLine($"Here are your numbers: first: {first}, second: {second} .");
-                if (first != 0)
-                {
-                    var result = GCDUtils.CalculateGCD(first, second);                   
-                    Console.WriteLine($"The GCD for {first} and {second} is {result}");
-                    //var result2 = GCDUtils.CalculateGCD(7,21);
-                    //Console.WriteLine($"The GCD for MULTI is {result2}");
-                }      
-            }
-            catch (Exception ex)
+
+            var first = ReadUserInput("Hello User!, Please provide the first number.");
+            var second = ReadUserInput("Please provide the second number.");
+            Console.WriteLine($"Here are your numbers: first: {first}, second: {second} .");
+            if (first != 0)
             {
-                Console.WriteLine(ex.Message);
+                var result = GCDUtils.CalculateGCD(first, second);
+                Console.WriteLine($"The GCD for {first} and {second} is {result}");
+                //var result2 = GCDUtils.CalculateGCD(12,24,48);
+                //Console.WriteLine($"The GCD for MULTI is {result2}");
             }
         }
 

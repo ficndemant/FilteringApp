@@ -48,7 +48,7 @@ namespace FilteringApp.Core.Utils
             {
                 if (!int.TryParse(stringArray[i], out var value))
                 {
-                    throw new ArgumentException($"Wrong Input in array: {stringArray[i]} Postion :{i + 1}");
+                    throw new ArgumentException($"Wrong Input in array: {stringArray[i]} Postion :{i + 1}", "ArgumentException");
                 }
                     array[i] = value;
                 
@@ -68,6 +68,24 @@ namespace FilteringApp.Core.Utils
             {
                 return val;
             }
+        }
+
+        public static (int min, int max) FindMinAndMax(this int[] array)
+        {
+            int min = array[0];
+            int max = array[0];
+            foreach (int v in array)
+            {
+                if (v < min)
+                {
+                    min = v;
+                }
+                if (v > max)
+                {
+                    max = v;
+                }
+            }
+            return (min, max);
         }
     }
 }
