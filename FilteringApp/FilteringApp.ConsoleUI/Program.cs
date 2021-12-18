@@ -9,38 +9,65 @@ namespace FilteringApp.ConsoleUI
 {
     class Program
     {
-        static void Main(string[] args)
+        //class A
+        //{
+        //    public int B { get; set; }
+
+        //    public override string ToString()
+        //    {
+        //        return B.ToString();
+        //    }
+        //}
+
+        private static void Main(string[] args)
         {
+            //var a = new A { B = 1 };
+            //Console.WriteLine(a.ToString());
             FilterTheArray();
             SumTheArray();
             ArrayGetMinMax();
-            InstanceCountItself();              
+            //InstanceCountItself();
+            //int[] array = CycleArrayReading();
+            //DisplayMergeSortResults(ArrayMergeSort.DoMergeSort(array,0,9));
+            //DoMergeSort();
         }
 
-        static void FilterTheArray()
+        private static void DoMergeSort()
+        {
+            int[] nums = { 12, 11, 13, 5, 6, 7 };
+            int nums_size = (int)nums.Length;
+
+            ArrayMergeSort.MergeSort(nums, 0, 5);
+            for (int i = 0; i < nums_size; i++)
+            {
+                Console.WriteLine($"arr[i]={nums[i]} ,");
+            }
+        }
+
+        private static void FilterTheArray()
         {
             var userInput = ValidateUserInput();
             DisplayFilteringResults(userInput.FilterOutResults());
             Console.ReadLine();
         }
 
-        static void SumTheArray()
+        private static void SumTheArray()
         {
-            int[] array = CycleArrayReading();
+            var array = CycleArrayReading();
             DisplaySummingResults(array.AddArrayElements());
             Console.ReadLine();
         }
 
-        static void ArrayGetMinMax()
+        private static void ArrayGetMinMax()
         {
-            int[] array = CycleArrayReading();
+            var array = CycleArrayReading();
             DisplayMinMax(array.FindMinAndMax());
             Console.ReadLine();
         }
 
-        static UserInput ValidateUserInput()
+        private static UserInput ValidateUserInput()
         {
-            int[] array = CycleArrayReading();
+            var array = CycleArrayReading();
             var intValue = CycleFilteringValueReading();
             var userInput = new UserInput(array, intValue);
 
@@ -63,7 +90,7 @@ namespace FilteringApp.ConsoleUI
             new SelfInstanceCount();
         }
 
-        public static int[] CycleArrayReading()
+        private static int[] CycleArrayReading()
         {
             try
             {
@@ -77,7 +104,7 @@ namespace FilteringApp.ConsoleUI
             }
         }
 
-        public static int CycleFilteringValueReading()
+        private static int CycleFilteringValueReading()
         {
             try
             {
@@ -91,7 +118,7 @@ namespace FilteringApp.ConsoleUI
             }
         }
 
-        public static int[] ReadUserArray()
+        private static int[] ReadUserArray()
         {
             Console.Clear();
             Console.WriteLine("Please provide INT numbers for the array, separated by commas (for example like 1,2,3,4,...,12321,21433).");
@@ -100,7 +127,7 @@ namespace FilteringApp.ConsoleUI
             return stringArray.CheckArray();
         }
 
-        public static int ReadUserFilteringNumber()
+        private static int ReadUserFilteringNumber()
         {
             Console.WriteLine("Please provide a SINGLE DIGIT INT value for filtering the array.");
             var value = Console.ReadLine();
@@ -108,7 +135,7 @@ namespace FilteringApp.ConsoleUI
             return value.CheckFilteringValue();
         }
 
-        public static void DisplayFilteringResults(List<int> result)
+        private static void DisplayFilteringResults(List<int> result)
         {
             Console.WriteLine("This is your filtered set: ");
             foreach (var item in result)
@@ -117,12 +144,12 @@ namespace FilteringApp.ConsoleUI
             }
         }
 
-        public static void DisplaySummingResults(int theSum)
+        private static void DisplaySummingResults(int theSum)
         {
             Console.WriteLine($"This is the sum of array elements: {theSum}");
         }
 
-        public static void DisplayMergeSortResults(Array array)
+        private static void DisplayMergeSortResults(int[] array)
         {
             Console.WriteLine("Sorted array looks like this: ");
             foreach (var number in array)
@@ -132,7 +159,7 @@ namespace FilteringApp.ConsoleUI
             Console.WriteLine();
         }
 
-        public static void DisplayMinMax((int min, int max) tuple)
+        private static void DisplayMinMax((int min, int max) tuple)
         {
             Console.WriteLine($"The minimal element of the array is: {tuple.min}, the maximal element of the array is: {tuple.max}.");
         }  

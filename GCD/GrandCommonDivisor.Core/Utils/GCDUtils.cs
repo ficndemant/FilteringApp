@@ -54,7 +54,6 @@ namespace GrandCommonDivisor.Core
                     first = second;
                     second = modulo;
                 }
-
                 helper = second;
             }
 
