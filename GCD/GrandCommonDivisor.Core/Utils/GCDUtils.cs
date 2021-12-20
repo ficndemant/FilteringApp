@@ -38,26 +38,16 @@ namespace GrandCommonDivisor.Core
 
         public static int CalculateGCD(params int[] args)
         {
-            int helper = args[0];
-            for (int i = 0; i < args.Length - 1; i++)
-            {
-                var first = helper;
-                var second = args[i + 1];
-                while (first != 0)
-                {
-                    int modulo = first % second;
-                    if (modulo == 0)
-                    {
-                        break;
-                    }
+            if (args.Length == 1) 
+                return args[0];
 
-                    first = second;
-                    second = modulo;
-                }
-                helper = second;
+            var previous = CalculateGCD(args[0], args[1]);
+            for (var i = 2; i < args.Length; i++)
+            {
+                previous = CalculateGCD(previous, args[i]);
             }
 
-            return Math.Abs(helper);
+            return previous;
         }
     }
 }

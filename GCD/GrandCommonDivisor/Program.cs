@@ -7,7 +7,6 @@ namespace GrandCommonDivisor.ConsoleUI
     {
         static void Main(string[] args)
         {
-
             var first = ReadUserInput("Hello User!, Please provide the first number.");
             var second = ReadUserInput("Please provide the second number.");
             Console.WriteLine($"Here are your numbers: first: {first}, second: {second} .");
@@ -15,9 +14,9 @@ namespace GrandCommonDivisor.ConsoleUI
             {
                 var result = GCDUtils.CalculateGCD(first, second);
                 Console.WriteLine($"The GCD for {first} and {second} is {result}");
-                //var result2 = GCDUtils.CalculateGCD(12,24,48);
-                //Console.WriteLine($"The GCD for MULTI is {result2}");
             }
+            var multiResult = GCDUtils.CalculateGCD(48,12,24);
+            Console.WriteLine($"The GCD for MULTI is {multiResult}");
         }
 
         private static int ReadUserInput(string text)
