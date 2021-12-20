@@ -4,29 +4,16 @@ using FilteringApp.Core.Other;
 using System;
 using System.Collections.Generic;
 
-
 namespace FilteringApp.ConsoleUI
 {
     class Program
     {
-        //class A
-        //{
-        //    public int B { get; set; }
-
-        //    public override string ToString()
-        //    {
-        //        return B.ToString();
-        //    }
-        //}
-
         private static void Main(string[] args)
         {
-            //var a = new A { B = 1 };
-            //Console.WriteLine(a.ToString());
             FilterTheArray();
             SumTheArray();
             ArrayGetMinMax();
-            //InstanceCountItself();
+            InstanceCountItself();
             //int[] array = CycleArrayReading();
             //DisplayMergeSortResults(ArrayMergeSort.DoMergeSort(array,0,9));
             //DoMergeSort();
@@ -36,7 +23,6 @@ namespace FilteringApp.ConsoleUI
         {
             int[] nums = { 12, 11, 13, 5, 6, 7 };
             int nums_size = (int)nums.Length;
-
             ArrayMergeSort.MergeSort(nums, 0, 5);
             for (int i = 0; i < nums_size; i++)
             {
@@ -91,16 +77,19 @@ namespace FilteringApp.ConsoleUI
         }
 
         private static int[] CycleArrayReading()
-        {
-            try
+        {           
+            while (true)
             {
-                return ReadUserArray();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-
-                return CycleArrayReading();
+                try
+                {
+                    return ReadUserArray();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    Console.ReadLine();
+                    continue;                 
+                }
             }
         }
 

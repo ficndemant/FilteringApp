@@ -3,7 +3,6 @@ using Xunit;
 using FilteringApp.Core.Utils;
 using FilteringApp.Core.Models;
 
-
 namespace XUnitTests
 {
     using System.Collections;
@@ -18,36 +17,25 @@ namespace XUnitTests
             public class ArrayUtilsTests
             {
                 [Theory, ClassData(typeof(UserArraInputData))]
-                public void TestingFilteringOutResultsOfTheArray(UserInput userInput, List<int> expected)
+                public void TestingFilteringOutResultsOfTheArray_Passing(UserInput userInput, List<int> expected)
                 {
                     var actual = userInput.FilterOutResults();
                     Assert.Equal(expected, actual);
                 }
 
-                //[Theory]
-                //[InlineData( new UserInput()]
-                //public void TestingFilteringOutResultsOfTheArrayFailing(UserInput userInput, List<int> expected)
-                //{
-                //    var actual = userInput.FilterOutResults();
-                //    Assert.Equal(expected, actual);
-                //}
-
-                [Fact]
-                public void TestingFilteringOutResultsOfTheArrayFailing()
+                [Theory]
+                [InlineData(new int[] { 1, 2, 3, 4 }, 2)]
+                [InlineData(new int[] { 1, 2, 3, 4 }, 4)]
+                public void TestingFilteringOutResultsOfTheArray_Failing(int[] array, int searchValue)
                 {
-                    // Arrange
-                    var userInput = new UserInput((new int[] { 1, 2, 3, 4 }), 2);
-                    //var userInputList = new List<UserInput>(){(new int[] { 1, 2, 3, 4 }, 2) };   
-                    //NEED HELP HIA to pass and cycle a list of UserInputs                  
+                    var userInput = new UserInput(array, searchValue);
                     var result = new List<int> { 1 };
-                    // Act
                     var actual = userInput.FilterOutResults();
-                    // Assert
                     Assert.Equal(result, actual);
                 }
 
                 [Theory, ClassData(typeof(AdditionSetOfArrayData))]
-                public void TestArrayElementsAddition(int[] array, int expected)
+                public void TestArrayElementsAddition_Passing(int[] array, int expected)
                 {
                     var actual = array.AddArrayElements();
                     Assert.Equal(actual, expected);
@@ -64,7 +52,7 @@ namespace XUnitTests
 
                 [Theory]
                 [ClassData(typeof(CheckOfStringInputArrayData))]
-                public void TestValidationOfArrayElements(string[] array,  int[] expected)
+                public void TestValidationOfArrayElements_Passing(string[] array,  int[] expected)
                 {
                     int[] result = array.CheckArray();
                     Assert.Equal(result, expected);
@@ -80,9 +68,8 @@ namespace XUnitTests
                     Assert.Equal(result, expected);
                 }
 
-                // Positive Negative for throwing exception when bad data fed.
                 [Theory, ClassData(typeof(CheckOfWrongStringInputArrayDataThrowsException))]
-                public void TestValidationOfWrongArrayElementsThrowingRightExceptions(string[] array)
+                public void TestValidationOfWrongArrayElementsThrowingRightExceptions_Passing(string[] array)
                 {
                     var exception = Assert.Throws<ArgumentException>(() => array.CheckArray());
                     string res = exception.ParamName;
@@ -98,8 +85,8 @@ namespace XUnitTests
 
                 [Theory]
                 [InlineData("abc", 23)]
-                [InlineData("???", 23)]
-                [InlineData("!", 23)]
+                [InlineData("???", 1)]
+                [InlineData("!", 0)]
                 public void TestInputFilteringValue_Failing(string value, int result)
                 {
                     var outcome = value.CheckFilteringValue();
@@ -108,7 +95,7 @@ namespace XUnitTests
 
                 [Theory]
                 [ClassData(typeof(ArrayMinMaxData))]
-                public void FindMinAndMax(int[] input, int min, int max)
+                public void FindMinAndMax_Passing(int[] input, int min, int max)
                 {
                     Assert.Equal(max, input.FindMinAndMax().max);
                     Assert.Equal(min, input.FindMinAndMax().min);
@@ -116,7 +103,7 @@ namespace XUnitTests
 
                 [Theory]
                 [InlineData(1,2,2,3,4,5)]
-                public void FindMinAndMax1(int min, int max, params int[] input)
+                public void FindMinAndMax_Failing(int min, int max, params int[] input)
                 {
                     Assert.Equal(max, input.FindMinAndMax().max);
                     Assert.Equal(min, input.FindMinAndMax().min);

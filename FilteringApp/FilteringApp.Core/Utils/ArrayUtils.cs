@@ -50,10 +50,15 @@ namespace FilteringApp.Core.Utils
                 {
                     throw new ArgumentException($"Wrong Input in array: {stringArray[i]} Postion :{i + 1}", "ArgumentException");
                 }
-                    array[i] = value;
-                
+
+                array[i] = value;               
             }
             return array;
+        }
+
+        public static void Foo(int? i)
+        {
+            Console.WriteLine(i.Value);
         }
 
         public static int CheckFilteringValue(this string value)
