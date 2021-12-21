@@ -63,11 +63,9 @@ namespace FilteringApp.Core.Utils
 
         public static int CheckFilteringValue(this string value)
         {
-            var userInput = value;
-
-            if (!int.TryParse(userInput, out var val))
+            if (!int.TryParse(value, out var val))
             {
-                throw new ArgumentException($"Wrong Input of filtering value: {userInput}");
+                throw new ArgumentException($"Wrong Input of filtering value: {value}");
             }
             else
             {
