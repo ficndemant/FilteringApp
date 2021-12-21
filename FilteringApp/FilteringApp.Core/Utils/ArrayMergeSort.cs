@@ -47,7 +47,9 @@ namespace FilteringApp.Core.Utils
                 }
 
                 for (int i2 = l; i2 <= r; i2++)
+                {
                     a[i] /= mx;
+                }
             }
         }
 
@@ -56,7 +58,6 @@ namespace FilteringApp.Core.Utils
             if (l < r)
             {
                 int m = l + (r - l) / 2;
-
                 MergeSort(arr, l, m);
                 MergeSort(arr, m + 1, r);
                 MergeInPlace(arr, l, m, r);

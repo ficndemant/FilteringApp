@@ -9,6 +9,14 @@ namespace GrandCommonDivisor.Core
             if (!int.TryParse(number, out var num))
             {
                 throw new ArgumentException("Please try number again!");
+                //create own exceptions with an enum (code/reason)
+                //For CheckInputForbiddenData  test
+                //[InlineData(null)]
+                //[InlineData("a")]
+                //[InlineData("?")]
+                //[InlineData(" ")]
+                //a)extend int?
+                //b) validate before try parse?
             }
 
             if (num == 0)
@@ -38,8 +46,10 @@ namespace GrandCommonDivisor.Core
 
         public static int CalculateGCD(params int[] args)
         {
-            if (args.Length == 1) 
+            if (args.Length == 1)
+            {
                 return args[0];
+            }
 
             var previous = CalculateGCD(args[0], args[1]);
             for (var i = 2; i < args.Length; i++)
