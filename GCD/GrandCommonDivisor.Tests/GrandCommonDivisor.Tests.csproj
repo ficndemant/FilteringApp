@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GCD\GrandCommonDivisor.Core\GrandCommonDivisor.Core.csproj" />
+    <ProjectReference Include="..\GrandCommonDivisor.Core\GrandCommonDivisor.Core.csproj" />
   </ItemGroup>
 
 </Project>
