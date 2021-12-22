@@ -2,7 +2,7 @@ using System;
 using GrandCommonDivisor.Core;
 using Xunit;
 
-namespace MyFirstUnitTests
+namespace MGrandCommonDivisor.Tests
 {
     public class UnitTestGCD
     {

@@ -9,14 +9,6 @@ namespace GrandCommonDivisor.Core
             if (!int.TryParse(number, out var num))
             {
                 throw new ArgumentException("Please try number again!");
-                //create own exceptions with an enum (code/reason)
-                //For CheckInputForbiddenData  test
-                //[InlineData(null)]
-                //[InlineData("a")]
-                //[InlineData("?")]
-                //[InlineData(" ")]
-                //a)extend int?
-                //b) validate before try parse?
             }
 
             if (num == 0)

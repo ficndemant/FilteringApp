@@ -56,11 +56,6 @@ namespace FilteringApp.Core.Utils
             return array;
         }
 
-        public static void Foo(int? i)
-        {
-            Console.WriteLine(i.Value);
-        }
-
         public static int CheckFilteringValue(this string value)
         {
             if (!int.TryParse(value, out var val))

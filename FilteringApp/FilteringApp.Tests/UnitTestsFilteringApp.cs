@@ -5,7 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Xunit;
 
-namespace MyFirstUnitTests
+namespace FilteringApp.Tests
 {
     public class UnitTestsFilteringApp
     {
@@ -13,7 +13,7 @@ namespace MyFirstUnitTests
         {
             [Theory]
             [ClassData(typeof(UserArraInputData))]
-            public void TestingFilteringOutResultsOfTheArray_Passing(UserInput userInput, List<int> expected)
+            public void FilterOutResultsWithValidData_ReturnsValidResults(UserInput userInput, List<int> expected)
             {
                 var actual = userInput.FilterOutResults();
                 Assert.Equal(expected, actual);
@@ -21,7 +21,7 @@ namespace MyFirstUnitTests
             
             [Theory]
             [ClassData(typeof(AdditionSetOfArrayData))]
-            public void TestArrayElementsAddition_Passing(int[] array, int expected)
+            public void TestArrayElementsAdditionWithValidData_ReturnsValidResult(int[] array, int expected)
             {
                 var actual = array.AddArrayElements();
                 Assert.Equal(actual, expected);
@@ -29,7 +29,7 @@ namespace MyFirstUnitTests
 
             [Theory]
             [ClassData(typeof(CheckOfStringInputArrayData))]
-            public void TestValidationOfArrayElements_Passing(string[] array,  int[] expected)
+            public void TestValidationOfArrayElementsWithValidData_ReturnsValidResult(string[] array,  int[] expected)
             {
                 int[] result = array.CheckArray();
                 Assert.Equal(result, expected);
@@ -37,7 +37,7 @@ namespace MyFirstUnitTests
 
             [Theory]
             [ClassData(typeof(CheckOfWrongStringInputArrayDataThrowsException))]
-            public void TestValidationOfWrongArrayElementsThrowingRightExceptions_Passing(string[] array)
+            public void TestValidationWithWrongArrayElements_ThrowsRightException(string[] array)
             {
                 var exception = Assert.Throws<ArgumentException>(() => array.CheckArray());
                 string res = exception.ParamName;
@@ -46,7 +46,7 @@ namespace MyFirstUnitTests
 
             [Theory]
             [ClassData(typeof(CheckFilteringInputValue))]
-            public void TestInputFilteringValue(string value, int result)
+            public void TestInputFilteringWithValidValue_ReturnsValidResult(string value, int result)
             {
                 var outcome = value.CheckFilteringValue();
                 Assert.Equal(outcome, result);
@@ -54,7 +54,7 @@ namespace MyFirstUnitTests
 
             [Theory]
             [ClassData(typeof(ArrayMinMaxData))]
-            public void FindMinAndMax_Passing(int[] input, int min, int max)
+            public void FindMinAndMaxWithValidData_ReturnsValidResults(int[] input, int min, int max)
             {
                 Assert.Equal(max, input.FindMinAndMax().max);
                 Assert.Equal(min, input.FindMinAndMax().min);
