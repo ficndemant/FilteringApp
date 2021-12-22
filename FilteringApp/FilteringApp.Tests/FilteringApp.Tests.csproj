@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\FilteringApp\FilteringApp.Core\FilteringApp.Core.csproj" />
+    <ProjectReference Include="..\FilteringApp.Core\FilteringApp.Core.csproj" />
   </ItemGroup>
 
 </Project>
