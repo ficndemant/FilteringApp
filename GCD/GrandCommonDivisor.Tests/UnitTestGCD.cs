@@ -17,9 +17,9 @@ namespace GrandCommonDivisor.Tests
         }
 
         [Theory]
-        [InlineData(new int[] { 12, 48 })]
-        [InlineData(new int[] { 12, 24, 48 })]
-        [InlineData(new int[] { 12, 24, 48, 96 })]
+        [InlineData(new[] { 12, 48 })]
+        [InlineData(new[] { 12, 24, 48 })]
+        [InlineData(new[] { 12, 24, 48, 96 })]
         public void CalculateGCDValidParamsPassed_ReturnsValidResult(int[] input)
         {
             var actualCount = 12;
