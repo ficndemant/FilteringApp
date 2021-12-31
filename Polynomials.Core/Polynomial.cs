@@ -1,19 +1,12 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text;
-//using System.Threading.Channels;
-//using System.Collections.Generic;
-//using System.Runtime.CompilerServices;
-//using System.Text;
-//using System.Threading;
-
 
 namespace Polynomials.Core
 { 
     public class Polynomial:IEquatable<Polynomial>
     {
         private readonly float[] _coefficientsAndDegrees;
-            //private float[] _reversedFloats;
 
         public Polynomial(float[] coefficientsAndDegrees)
         {
@@ -38,22 +31,98 @@ namespace Polynomials.Core
 
         public bool Equals([AllowNull] Polynomial other)
         {
-
-            //Polynomial personObj = Object as Polynomial;
-            //if (personObj == null)
-            //{
-            //    return false;
-            //}
-            //else
-            //{
-            //    return Equals(personObj);
-            //}
-
-            if ( this._coefficientsAndDegrees== other._coefficientsAndDegrees)
+            if (other is null)
             {
-                return true;
-            };
-            return false;
+                return false;
+            }
+
+            if (!(other is Polynomial))
+            {
+                return false;
+            }
+
+            return this._coefficientsAndDegrees == ((Polynomial) other)._coefficientsAndDegrees;
+        }
+
+        public static Polynomial operator +(Polynomial polynomial_1, Polynomial polynomial_2)
+        {
+
+            if (polynomial_1 is null || polynomial_2 is null)
+            {
+                return null;
+            }
+
+            if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
+            {
+                return null;
+            }
+
+            if (!(polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length))
+            {
+                var size = Math.Max(polynomial_1._coefficientsAndDegrees.Length,
+                    polynomial_2._coefficientsAndDegrees.Length);
+                Polynomial polynomial = new Polynomial(new float[size]);
+
+                for (var i = 0; i == size; i++)
+                {
+                    polynomial._coefficientsAndDegrees[i] = polynomial_1._coefficientsAndDegrees[i] + polynomial_2._coefficientsAndDegrees[i];
+                }
+
+                return polynomial;
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static Polynomial operator ==(Polynomial polynomial_1, Polynomial polynomial_2)
+        {
+            if (polynomial_1 is null || polynomial_2 is null)
+            {
+                return null;
+            }
+
+            if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
+            {
+                return null;
+            }
+
+            if (polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length)
+            {
+                // ADD COMPARE FLOAT WITH INACCURACY MARGIN HERE
+
+                var isEqual = true;
+                var polynomial = new Polynomial(new float[polynomial_1._coefficientsAndDegrees.Length]);
+
+                while(isEqual){
+                    for (var i = 1; i == polynomial_1._coefficientsAndDegrees.Length; i++)
+                    {
+                        if (polynomial_1._coefficientsAndDegrees.GetValue(i) ==
+                            polynomial_2._coefficientsAndDegrees.GetValue(i))
+                        {
+                            polynomial._coefficientsAndDegrees[i] = polynomial_1._coefficientsAndDegrees[i];
+                        }
+                        else
+                        {
+                            isEqual = false;
+                            return null;
+                        }
+                    }
+
+                    if (isEqual == true)
+                    {
+                        return polynomial;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        public static Polynomial operator !=(Polynomial polynomial_1, Polynomial polynomial_2)
+        {
+            return default;
         }
 
         public override string ToString()
@@ -84,65 +153,5 @@ namespace Polynomials.Core
 
             return returnString.ToString();
         }
-
-        //bool IEquatable<Polynomial>.Equals(Polynomial other)
-        //{
-        //    if (Equals(first, second))
-        //    {
-        //        return true;
-        //    }
-
-        //    return false;
-        //}
-
-
-        // This is here just to have ability to change polynom afer we already got it
-        // For now just a basic bullshit code
-        //public float[] CoefficientsAndDegrees
-        //{
-        //    //get { return _coefficientsAndDegrees; }  this is not neccessary
-        //    set
-        //    {
-        //        for (int i = 0; i < value.Length; i++)
-        //        {
-        //            if (value[i] == 0.0F)
-        //            {
-        //                //Do something
-        //                _coefficientsAndDegrees[i] = value[i];
-        //            }
-        //        }
-        //        // _coefficientsAndDegrees = value;
-
-        //    }
-        //}
-
-        // reverse polynomial array
-        //public void ReversePolynomial()
-        //{
-        //    var reversed = new float[_coefficientsAndDegrees.Length];
-        //    var count = _coefficientsAndDegrees.Length;
-        //    for (int i = 0; i < _coefficientsAndDegrees.Length; i++)
-        //    {
-        //        reversed[i] = _coefficientsAndDegrees[count - 1];
-        //            count--;
-        //    }
-        //    _reversedFloats = reversed;
-        //}
-
-
-        // will work now on printing the polynomial to screen in a user friendly form
-        //public void Print()
-        //{
-        //    var count = _coefficientsAndDegrees.Length;
-        //    Console.WriteLine("MyPoly polynomial looks like this for now: ");
-        //    for (var i = 0; i < _coefficientsAndDegrees.Length; i++)
-        //    {
-        //        Console.Write($"{_coefficientsAndDegrees[count-1]}x^{count-1} ");
-        //        count--;
-        //    }
-
-        //}
-
-
     }
 }
