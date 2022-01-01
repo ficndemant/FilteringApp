@@ -7,6 +7,7 @@ namespace Polynomials.core
     {
         static void Main(string[] args)
         {
+
         }
     }
 }

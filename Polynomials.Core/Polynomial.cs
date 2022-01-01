@@ -1,9 +1,34 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Polynomials.Core
-{ 
+{
+    //// https://stackoverflow.com/questions/3874627/floating-point-comparison-functions-for-c-sharp
+    //[StructLayout(LayoutKind.Explicit)]
+    //public struct FloatToIntSafeBitConverter
+    //{
+    //    public static int Convert(float value)
+    //    {
+    //        return new FloatToIntSafeBitConverter(value).IntValue;
+    //    }
+
+    //    public FloatToIntSafeBitConverter(float floatValue) : this()
+    //    {
+    //        FloatValue = floatValue;
+    //    }
+
+    //    [FieldOffset(0)]
+    //    public readonly int IntValue;
+
+    //    [FieldOffset(0)]
+    //    public readonly float FloatValue;
+    //}
+    //
+    //
+    // *************** They say using this is like the fastest method ever.
+
     public class Polynomial:IEquatable<Polynomial>
     {
         private readonly float[] _coefficientsAndDegrees;
@@ -31,6 +56,16 @@ namespace Polynomials.Core
 
         public bool Equals([AllowNull] Polynomial other)
         {
+            var size = Math.Max(other._coefficientsAndDegrees.Length,
+                this._coefficientsAndDegrees.Length);
+            Polynomial polynomial1 = new Polynomial(new float[size]);
+            Polynomial polynomial2 = new Polynomial(new float[size]);
+            for (var i = 0; i == size; i++)
+            {
+                polynomial1._coefficientsAndDegrees[i] = this._coefficientsAndDegrees[i];
+                polynomial2._coefficientsAndDegrees[i] = other._coefficientsAndDegrees[i];
+            }
+
             if (other is null)
             {
                 return false;
@@ -41,7 +76,13 @@ namespace Polynomials.Core
                 return false;
             }
 
-            return this._coefficientsAndDegrees == ((Polynomial) other)._coefficientsAndDegrees;
+            if (polynomial1 == polynomial2)
+            {
+                return true;
+            }
+            
+            //return this._coefficientsAndDegrees == ((Polynomial)other)._coefficientsAndDegrees;
+            //return AreClose((double[])this._coefficientsAndDegrees, (Polynomial)other)._coefficientsAndDegrees);
         }
 
         public static Polynomial operator +(Polynomial polynomial_1, Polynomial polynomial_2)
@@ -76,43 +117,57 @@ namespace Polynomials.Core
             }
         }
 
+        public static bool AreClose(double value1, double value2)
+        {
+            if (value1 == value2)
+                return true;
+            double num1 = (Math.Abs(value1) + Math.Abs(value2) + 10.0) * 2.22044604925031E-16;
+            double num2 = value1 - value2;
+            if (-num1 < num2)
+                return num1 > num2;
+            return false;
+        }
+
+
+        //public static Polynomial operator ==(Polynomial polynomial_1, Polynomial polynomial_2)
         public static Polynomial operator ==(Polynomial polynomial_1, Polynomial polynomial_2)
         {
             if (polynomial_1 is null || polynomial_2 is null)
             {
-                return null;
+                //return null;
+                return false;
             }
 
             if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
             {
-                return null;
+                //return null;
+                return false;
             }
 
             if (polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length)
             {
-                // ADD COMPARE FLOAT WITH INACCURACY MARGIN HERE
-
                 var isEqual = true;
                 var polynomial = new Polynomial(new float[polynomial_1._coefficientsAndDegrees.Length]);
 
                 while(isEqual){
                     for (var i = 1; i == polynomial_1._coefficientsAndDegrees.Length; i++)
                     {
-                        if (polynomial_1._coefficientsAndDegrees.GetValue(i) ==
-                            polynomial_2._coefficientsAndDegrees.GetValue(i))
+                        if(AreClose((double)polynomial_1._coefficientsAndDegrees.GetValue(i), (double)polynomial_2._coefficientsAndDegrees.GetValue(i)))
                         {
                             polynomial._coefficientsAndDegrees[i] = polynomial_1._coefficientsAndDegrees[i];
                         }
                         else
                         {
                             isEqual = false;
-                            return null;
+                            return false;
+                            //return null;
                         }
                     }
 
                     if (isEqual == true)
                     {
-                        return polynomial;
+                        //return polynomial;
+                        return true;
                     }
                 }
             }
