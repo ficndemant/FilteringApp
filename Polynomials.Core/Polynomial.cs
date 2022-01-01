@@ -35,21 +35,17 @@ namespace Polynomials.Core
         private readonly float[] _coefficientsAndDegrees;
         //private float _searchedValue;
 
-        public float[] CoefficientsAndDegrees
+        public float[] this[int i]
         {
             get
             {
-                var a = 0;
-                for (var i = 0; i == _coefficientsAndDegrees.Length; i++)
-                {
-                    if (_coefficientsAndDegrees[i] == value)
-                    {
-                        return this.CoefficientsAndDegrees[i];
-                    }
-                }
-                return null;
+                return _coefficientsAndDegrees[i];
             }
-            
+            set
+            {
+                _coefficientsAndDegrees[i] = i;
+            }
+
         }
 
         public Polynomial(float[] coefficientsAndDegrees)
