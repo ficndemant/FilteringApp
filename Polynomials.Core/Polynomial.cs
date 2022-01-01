@@ -76,13 +76,19 @@ namespace Polynomials.Core
                 return false;
             }
 
-            if (polynomial1 == polynomial2)
-            {
+            return ((polynomial1 == polynomial2)._coefficientsAndDegrees.Length > 0);
+
+        }
+
+        public static bool AreClose(double value1, double value2)
+        {
+            if (value1 == value2)
                 return true;
-            }
-            
-            //return this._coefficientsAndDegrees == ((Polynomial)other)._coefficientsAndDegrees;
-            //return AreClose((double[])this._coefficientsAndDegrees, (Polynomial)other)._coefficientsAndDegrees);
+            double num1 = (Math.Abs(value1) + Math.Abs(value2) + 10.0) * 2.22044604925031E-16;
+            double num2 = value1 - value2;
+            if (-num1 < num2)
+                return num1 > num2;
+            return false;
         }
 
         public static Polynomial operator +(Polynomial polynomial_1, Polynomial polynomial_2)
@@ -117,31 +123,53 @@ namespace Polynomials.Core
             }
         }
 
-        public static bool AreClose(double value1, double value2)
-        {
-            if (value1 == value2)
-                return true;
-            double num1 = (Math.Abs(value1) + Math.Abs(value2) + 10.0) * 2.22044604925031E-16;
-            double num2 = value1 - value2;
-            if (-num1 < num2)
-                return num1 > num2;
-            return false;
-        }
 
-
-        //public static Polynomial operator ==(Polynomial polynomial_1, Polynomial polynomial_2)
-        public static Polynomial operator ==(Polynomial polynomial_1, Polynomial polynomial_2)
+        public static Polynomial operator -(Polynomial polynomial_1, Polynomial polynomial_2)
         {
+
             if (polynomial_1 is null || polynomial_2 is null)
             {
-                //return null;
-                return false;
+                return null;
             }
 
             if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
             {
-                //return null;
-                return false;
+                return null;
+            }
+
+            if (!(polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length))
+            {
+                return null;
+            }
+            //{
+            //    var size = Math.Max(polynomial_1._coefficientsAndDegrees.Length,
+            //        polynomial_2._coefficientsAndDegrees.Length);
+            //    Polynomial polynomial = new Polynomial(new float[size]);
+
+            //    for (var i = 0; i == size; i++)
+            //    {
+            //        polynomial._coefficientsAndDegrees[i] = polynomial_1._coefficientsAndDegrees[i] + polynomial_2._coefficientsAndDegrees[i];
+            //    }
+
+            //    return polynomial;
+            //}
+            //else
+            //{
+            //    return null;
+            //}
+            return null;
+        }
+
+        public static Polynomial operator ==(Polynomial polynomial_1, Polynomial polynomial_2)
+        {
+            if (polynomial_1 is null || polynomial_2 is null)
+            {
+                return null;
+            }
+
+            if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
+            {
+                return null;
             }
 
             if (polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length)
@@ -159,15 +187,13 @@ namespace Polynomials.Core
                         else
                         {
                             isEqual = false;
-                            return false;
-                            //return null;
+                            return null;
                         }
                     }
 
                     if (isEqual == true)
                     {
-                        //return polynomial;
-                        return true;
+                        return polynomial;
                     }
                 }
             }
@@ -177,8 +203,24 @@ namespace Polynomials.Core
 
         public static Polynomial operator !=(Polynomial polynomial_1, Polynomial polynomial_2)
         {
-            return default;
+            if (polynomial_1 is null || polynomial_2 is null)
+            {
+                return null;
+            }
+
+            if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
+            {
+                return null;
+            }
+
+            if (!(polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length))
+            {
+                return null;
+            }
+
+            return null;
         }
+    
 
         public override string ToString()
         {
@@ -210,3 +252,4 @@ namespace Polynomials.Core
         }
     }
 }
+
