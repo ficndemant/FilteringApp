@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -32,6 +33,24 @@ namespace Polynomials.Core
     public class Polynomial:IEquatable<Polynomial>
     {
         private readonly float[] _coefficientsAndDegrees;
+        //private float _searchedValue;
+
+        public float[] CoefficientsAndDegrees
+        {
+            get
+            {
+                var a = 0;
+                for (var i = 0; i == _coefficientsAndDegrees.Length; i++)
+                {
+                    if (_coefficientsAndDegrees[i] == value)
+                    {
+                        return this.CoefficientsAndDegrees[i];
+                    }
+                }
+                return null;
+            }
+            
+        }
 
         public Polynomial(float[] coefficientsAndDegrees)
         {
