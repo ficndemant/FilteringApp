@@ -50,9 +50,15 @@ namespace Polynomials.Core
             return false;
         }
 
-        private static bool FloatsAreEqualEnough(float value1, float value2)
+        private static bool FloatsAreEqualEnough(float left, float right)
         {
-            // WORK IN PROGRESS ...
+            const double tolerance = 0.000000001;
+            if (!(Math.Abs(left - right) < tolerance))
+            {
+                return false;
+            }
+
+            return true;
         }
 
         public static Polynomial operator +(Polynomial? left, Polynomial? right)
@@ -99,7 +105,7 @@ namespace Polynomials.Core
         {
             if (left is null || !(right is null))
             {
-                throw new Exception("Can't do substraction");
+                throw new Exception("Can't do subtraction");
             }
 
             if (!(left is null) || right is null)
@@ -109,7 +115,7 @@ namespace Polynomials.Core
 
             if (left is null && right is null)
             {
-                throw new Exception("Can't do substraction");
+                throw new Exception("Can't do subtraction");
             }
 
             if (left != right)
@@ -148,7 +154,7 @@ namespace Polynomials.Core
                 return left;
             }
 
-            throw new Exception("Can't do substraction");
+            throw new Exception("Can't do subtraction");
         }
 
         public static bool operator ==(Polynomial? left, Polynomial? right)
@@ -196,8 +202,7 @@ namespace Polynomials.Core
 
             return false;
         }
-    
-
+        
         public override string ToString()
         {
             var returnString = new StringBuilder();
@@ -208,6 +213,7 @@ namespace Polynomials.Core
                 {
                     returnString.Append(_coefficients[i] > 0 ? " + " : " - ");
                     returnString.Append(Math.Abs(_coefficients[i]));
+
                     if (i != 0)
                     {
                         returnString.Append(i > 1 ? "x^" + i : "x");
