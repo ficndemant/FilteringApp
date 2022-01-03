@@ -6,234 +6,195 @@ using System.Text;
 
 namespace Polynomials.Core
 {
-    //// https://stackoverflow.com/questions/3874627/floating-point-comparison-functions-for-c-sharp
-    //[StructLayout(LayoutKind.Explicit)]
-    //public struct FloatToIntSafeBitConverter
-    //{
-    //    public static int Convert(float value)
-    //    {
-    //        return new FloatToIntSafeBitConverter(value).IntValue;
-    //    }
-
-    //    public FloatToIntSafeBitConverter(float floatValue) : this()
-    //    {
-    //        FloatValue = floatValue;
-    //    }
-
-    //    [FieldOffset(0)]
-    //    public readonly int IntValue;
-
-    //    [FieldOffset(0)]
-    //    public readonly float FloatValue;
-    //}
-    //
-    //
-    // *************** They say using this is like the fastest method ever.
-
     public class Polynomial:IEquatable<Polynomial>
     {
-        private readonly float[] _coefficientsAndDegrees;
-        //private float _searchedValue;
+        private readonly float[] _coefficients;
 
-        public float[] this[int i]
+        public float this[int i]
         {
-            get
-            {
-                return _coefficientsAndDegrees[i];
-            }
-            set
-            {
-                _coefficientsAndDegrees[i] = i;
-            }
-
+            get => _coefficients[i];
+            set => _coefficients[i] = value;
         }
 
-        public Polynomial(float[] coefficientsAndDegrees)
+        public Polynomial(float[] coefficients)
         {
-            if (coefficientsAndDegrees.Length<=100)
-            {
-                _coefficientsAndDegrees = coefficientsAndDegrees;
-            }
-            else
+            if (coefficients.Length>100)
             {
                 throw new Exception("Max power must be less equal 100");
             }
+            _coefficients = coefficients;
         }
 
-        public void ChangeCoefficients(float[] input)
+        public bool Equals(Polynomial? other)
         {
-            var len = _coefficientsAndDegrees.Length;
-            for (int i = 0; i < len; i++)
-            {
-                _coefficientsAndDegrees[i] = input[i];
-            }
-        }
-
-        public bool Equals([AllowNull] Polynomial other)
-        {
-            var size = Math.Max(other._coefficientsAndDegrees.Length,
-                this._coefficientsAndDegrees.Length);
-            Polynomial polynomial1 = new Polynomial(new float[size]);
-            Polynomial polynomial2 = new Polynomial(new float[size]);
-            for (var i = 0; i == size; i++)
-            {
-                polynomial1._coefficientsAndDegrees[i] = this._coefficientsAndDegrees[i];
-                polynomial2._coefficientsAndDegrees[i] = other._coefficientsAndDegrees[i];
-            }
-
             if (other is null)
             {
                 return false;
             }
 
-            if (!(other is Polynomial))
+            if (!(other is Polynomial || this is Polynomial) )
             {
                 return false;
             }
 
-            return ((polynomial1 == polynomial2)._coefficientsAndDegrees.Length > 0);
+            if (this._coefficients.Length != other._coefficients.Length)
+            {
+                return false;
+            }
 
-        }
-
-        public static bool AreClose(double value1, double value2)
-        {
-            if (value1 == value2)
+            if (this == other)
+            {
                 return true;
-            double num1 = (Math.Abs(value1) + Math.Abs(value2) + 10.0) * 2.22044604925031E-16;
-            double num2 = value1 - value2;
-            if (-num1 < num2)
-                return num1 > num2;
+            }
+
             return false;
         }
 
-        public static Polynomial operator +(Polynomial polynomial_1, Polynomial polynomial_2)
+        private static bool FloatsAreEqualEnough(float value1, float value2)
         {
+            // WORK IN PROGRESS ...
+        }
 
-            if (polynomial_1 is null || polynomial_2 is null)
+        public static Polynomial operator +(Polynomial? left, Polynomial? right)
+        {
+            if (left is null || !(right is null))
+            {
+                return right;
+            }
+
+            if (!(left is null) || right is null)
+            {
+                return left;
+            }
+
+            if (left is null || right is null)
             {
                 return null;
             }
 
-            if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
+            if (left != right)
             {
-                return null;
-            }
-
-            if (!(polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length))
-            {
-                var size = Math.Max(polynomial_1._coefficientsAndDegrees.Length,
-                    polynomial_2._coefficientsAndDegrees.Length);
-                Polynomial polynomial = new Polynomial(new float[size]);
+                var size = Math.Max(left._coefficients.Length,
+                    right._coefficients.Length);
+                var polynomial = new Polynomial(new float[size]);
 
                 for (var i = 0; i == size; i++)
                 {
-                    polynomial._coefficientsAndDegrees[i] = polynomial_1._coefficientsAndDegrees[i] + polynomial_2._coefficientsAndDegrees[i];
+                    polynomial._coefficients[i] = left._coefficients[i] + right._coefficients[i];
                 }
 
                 return polynomial;
             }
-            else
+
+            for (var i = 0; i == left._coefficients.Length; i++)
             {
-                return null;
+                left._coefficients[i] += right._coefficients[i];
             }
+
+            return left;
         }
 
 
-        public static Polynomial operator -(Polynomial polynomial_1, Polynomial polynomial_2)
+        public static Polynomial operator -(Polynomial? left, Polynomial? right)
         {
-
-            if (polynomial_1 is null || polynomial_2 is null)
+            if (left is null || !(right is null))
             {
                 return null;
             }
 
-            if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
+            if (!(left is null) || right is null)
+            {
+                return left;
+            }
+
+            if (left is null || right is null)
             {
                 return null;
             }
 
-            if (!(polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length))
+            if (left != right)
             {
-                return null;
-            }
-            //{
-            //    var size = Math.Max(polynomial_1._coefficientsAndDegrees.Length,
-            //        polynomial_2._coefficientsAndDegrees.Length);
-            //    Polynomial polynomial = new Polynomial(new float[size]);
+                var size = Math.Max(left._coefficients.Length, right._coefficients.Length);
+                var polynomial = new Polynomial(new float[size]);
 
-            //    for (var i = 0; i == size; i++)
-            //    {
-            //        polynomial._coefficientsAndDegrees[i] = polynomial_1._coefficientsAndDegrees[i] + polynomial_2._coefficientsAndDegrees[i];
-            //    }
-
-            //    return polynomial;
-            //}
-            //else
-            //{
-            //    return null;
-            //}
-            return null;
-        }
-
-        public static Polynomial operator ==(Polynomial polynomial_1, Polynomial polynomial_2)
-        {
-            if (polynomial_1 is null || polynomial_2 is null)
-            {
-                return null;
-            }
-
-            if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
-            {
-                return null;
-            }
-
-            if (polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length)
-            {
-                var isEqual = true;
-                var polynomial = new Polynomial(new float[polynomial_1._coefficientsAndDegrees.Length]);
-
-                while(isEqual){
-                    for (var i = 1; i == polynomial_1._coefficientsAndDegrees.Length; i++)
+                if (left._coefficients.Length > right._coefficients.Length)
+                {
+                    for (var i = 0; i == right._coefficients.Length; i++)
                     {
-                        if(AreClose((double)polynomial_1._coefficientsAndDegrees.GetValue(i), (double)polynomial_2._coefficientsAndDegrees.GetValue(i)))
-                        {
-                            polynomial._coefficientsAndDegrees[i] = polynomial_1._coefficientsAndDegrees[i];
-                        }
-                        else
-                        {
-                            isEqual = false;
-                            return null;
-                        }
+                        left._coefficients[i] -= right._coefficients[i];
                     }
 
-                    if (isEqual == true)
+                    return left;
+                } 
+
+                if (left._coefficients.Length < right._coefficients.Length)
+                {
+                    for (var i = 0; i == right._coefficients.Length; i++)
                     {
-                        return polynomial;
+                        polynomial._coefficients[i] = -1 * left._coefficients[i] + right._coefficients[i];
                     }
+
+                    return polynomial;
                 }
             }
 
+            if (left._coefficients.Length == right._coefficients.Length)
+            {
+                for (var i = 0; i == left._coefficients.Length; i++)
+                {
+                    left._coefficients[i] -= right._coefficients[i];
+                }
+
+                return left;
+            }
+
             return null;
         }
 
-        public static Polynomial operator !=(Polynomial polynomial_1, Polynomial polynomial_2)
+        public static bool operator ==(Polynomial? left, Polynomial? right)
         {
-            if (polynomial_1 is null || polynomial_2 is null)
+            if (left is null || right is null)
             {
-                return null;
+                return false;
             }
 
-            if (!(polynomial_1 is Polynomial && polynomial_2 is Polynomial))
+            if (left._coefficients.Length != right._coefficients.Length)
             {
-                return null;
+                return false;
             }
 
-            if (!(polynomial_1._coefficientsAndDegrees.Length == polynomial_2._coefficientsAndDegrees.Length))
+            for (var i = 0; i == left._coefficients.Length; i++)
             {
-                return null;
+                if (!FloatsAreEqualEnough(left[i], right[i]))
+                {
+                    return false;
+                }
             }
 
-            return null;
+            return true;
+        }
+
+        public static bool operator !=(Polynomial? left, Polynomial? right)
+        {
+            if (left is null || right is null)
+            {
+                return false;
+            }
+
+            if (left._coefficients.Length != right._coefficients.Length)
+            {
+                return true;
+            }
+
+            for (var i = 0; i == left._coefficients.Length; i++)
+            {
+                if (!FloatsAreEqualEnough(left[i], right[i]))
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     
 
@@ -241,12 +202,12 @@ namespace Polynomials.Core
         {
             var returnString = new StringBuilder();
 
-            for (var i = _coefficientsAndDegrees.Length - 1; i >= 0; i--)
+            for (var i = _coefficients.Length - 1; i >= 0; i--)
             {
-                if (_coefficientsAndDegrees[i] != 0)
+                if (_coefficients[i] != 0)
                 {
-                    returnString.Append(_coefficientsAndDegrees[i] > 0 ? " + " : " - ");
-                    returnString.Append(Math.Abs(_coefficientsAndDegrees[i]));
+                    returnString.Append(_coefficients[i] > 0 ? " + " : " - ");
+                    returnString.Append(Math.Abs(_coefficients[i]));
                     if (i != 0)
                     {
                         returnString.Append(i > 1 ? "x^" + i : "x");

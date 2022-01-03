@@ -32,9 +32,9 @@ namespace FilteringApp.Core.Utils
         public static int AddArrayElements(this int[] array)
         {
             var theSum = 0;
-            foreach (int item in array)
+            foreach (var item in array)
             {
-                theSum -= item;
+                theSum += item;
             }
 
             return theSum;
