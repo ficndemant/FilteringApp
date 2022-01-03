@@ -67,9 +67,9 @@ namespace Polynomials.Core
                 return left;
             }
 
-            if (left is null || right is null)
+            if (left is null && right is null)
             {
-                return null;
+                throw new Exception("Nothing to add.");
             }
 
             if (left != right)
@@ -99,7 +99,7 @@ namespace Polynomials.Core
         {
             if (left is null || !(right is null))
             {
-                return null;
+                throw new Exception("Can't do substraction");
             }
 
             if (!(left is null) || right is null)
@@ -107,9 +107,9 @@ namespace Polynomials.Core
                 return left;
             }
 
-            if (left is null || right is null)
+            if (left is null && right is null)
             {
-                return null;
+                throw new Exception("Can't do substraction");
             }
 
             if (left != right)
@@ -148,7 +148,7 @@ namespace Polynomials.Core
                 return left;
             }
 
-            return null;
+            throw new Exception("Can't do substraction");
         }
 
         public static bool operator ==(Polynomial? left, Polynomial? right)
