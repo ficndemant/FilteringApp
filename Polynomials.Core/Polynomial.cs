@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Polynomials.Core
 {
-    public class Polynomial:IEquatable<Polynomial>
+    public class Polynomial : IEquatable<Polynomial>
     {
         private readonly float[] _coefficients;
 
@@ -18,10 +18,11 @@ namespace Polynomials.Core
 
         public Polynomial(float[] coefficients)
         {
-            if (coefficients.Length>100)
+            if (coefficients.Length > 100)
             {
-                throw new Exception("Max power must be less equal 100");
+                throw new Exception("Max power must be less or equal 100");
             }
+
             _coefficients = coefficients;
         }
 
@@ -32,33 +33,18 @@ namespace Polynomials.Core
                 return false;
             }
 
-            if (!(other is Polynomial || this is Polynomial) )
-            {
-                return false;
-            }
-
             if (this._coefficients.Length != other._coefficients.Length)
             {
                 return false;
             }
 
-            if (this == other)
-            {
-                return true;
-            }
-
-            return false;
+            return this == other;
         }
 
         private static bool FloatsAreEqualEnough(float left, float right)
         {
             const double tolerance = 0.000000001;
-            if (!(Math.Abs(left - right) < tolerance))
-            {
-                return false;
-            }
-
-            return true;
+            return Math.Abs(left - right) < tolerance;
         }
 
         public static Polynomial operator +(Polynomial? left, Polynomial? right)
