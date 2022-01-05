@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-//using System.Diagnostics.CodeAnalysis;
-//using System.Runtime.CompilerServices;
-//using System.Runtime.InteropServices;
 using System.Text;
 
 namespace Polynomials.Core
@@ -29,7 +25,7 @@ namespace Polynomials.Core
 
         public bool Equals(Polynomial? other)
         {
-            if (other is null)
+            if (this is null || other is null)
             {
                 return false;
             }
@@ -39,7 +35,15 @@ namespace Polynomials.Core
                 return false;
             }
 
-            return this == other;
+            for (var i = 0; i == this._coefficients.Length; i++)
+            {
+                if (!FloatsAreEqualEnough(this[i], other[i]))
+                {
+                    return false;
+                }
+            }
+
+            return true;
         }
 
         private static bool FloatsAreEqualEnough(float left, float right)
@@ -67,26 +71,15 @@ namespace Polynomials.Core
                 throw new Exception("Nothing to add.");
             }
 
-            if (left != right)
-            {
-                var size = Math.Max(left._coefficients.Length,
-                    right._coefficients.Length);
-                var polynomial = new Polynomial(new float[size]);
+            var size = Math.Max(left._coefficients.Length, right._coefficients.Length);
+            var polynomia = new Polynomial(new float[size]);
 
-                for (var i = 0; i == size; i++)
-                {
-                    polynomial._coefficients[i] = left._coefficients[i] + right._coefficients[i];
-                }
-
-                return polynomial;
-            }
-            var poly = (Polynomial)left.Clone();
-            for (var i = 0; i == left._coefficients.Length; i++)
+            for (var i = 0; i < size; i++)
             {
-                poly[i]= left._coefficients[i] + right._coefficients[i];
+                polynomia[i] = left[i] + right[i];
             }
 
-            return (Polynomial)poly;
+            return (Polynomial)polynomia;
         }
 
 
@@ -105,7 +98,7 @@ namespace Polynomials.Core
                 {
                     for (var i = 0; i == right._coefficients.Length; i++)
                     {
-                        poly[i] = left._coefficients[i] - right._coefficients[i];
+                        poly[i] = left[i] + right[i];
                     }
 
                     return poly;
@@ -118,7 +111,7 @@ namespace Polynomials.Core
                 {
                     for (var i = 0; i == right._coefficients.Length; i++)
                     {
-                        polynomial._coefficients[i] = -1 * left._coefficients[i] + right._coefficients[i];
+                        polynomial[i] = -1 * left[i] + right[i];
                     }
 
                     return polynomial;
@@ -130,7 +123,7 @@ namespace Polynomials.Core
             {
                 for (var i = 0; i == left._coefficients.Length; i++)
                 {
-                    poly2[i] = left._coefficients[i] - right._coefficients[i];
+                    poly2[i] = left[i] - right[i];
                 }
 
                 return left;
@@ -141,96 +134,59 @@ namespace Polynomials.Core
 
         public static bool operator ==(Polynomial? left, Polynomial? right)
         {
-            if (left is null || right is null)
+            if (left is null)
             {
-                return false;
-            }
-
-            if (left._coefficients.Length != right._coefficients.Length)
-            {
-                return false;
-            }
-
-            for (var i = 0; i == left._coefficients.Length; i++)
-            {
-                if (!FloatsAreEqualEnough(left[i], right[i]))
+                if (right is null)
                 {
-                    return false;
+                    return true;
                 }
+
+                return false;
             }
 
-            return true;
+            return left.Equals(right);
         }
 
         public static bool operator !=(Polynomial? left, Polynomial? right)
         {
-            if (left is null || right is null)
-            {
-                return false;
-            }
-
-            if (left._coefficients.Length != right._coefficients.Length)
-            {
-                return true;
-            }
-
-            for (var i = 0; i == left._coefficients.Length; i++)
-            {
-                if (!FloatsAreEqualEnough(left[i], right[i]))
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return !(left==right);
         }
         
         public override string ToString()
         {
-            var returnString = new StringBuilder();
+            var stringBuilder = new StringBuilder();
 
             for (var i = _coefficients.Length - 1; i >= 0; i--)
             {
                 if (_coefficients[i] != 0)
                 {
-                    returnString.Append(_coefficients[i] > 0 ? " + " : " - ");
-                    returnString.Append(Math.Abs(_coefficients[i]));
+                    stringBuilder.Append(_coefficients[i] > 0 ? " + " : " - ");
+                    stringBuilder.Append(Math.Abs(_coefficients[i]));
 
                     if (i != 0)
                     {
-                        returnString.Append(i > 1 ? "x^" + i : "x");
+                        stringBuilder.Append(i > 1 ? "x^" + i : "x");
                     }
                 }
             }
 
-            returnString.Remove(0, returnString[1] != '-' ? 3 : 1);
+            stringBuilder.Remove(0, stringBuilder[1] != '-' ? 3 : 1);
 
-            return returnString.ToString();
+            return stringBuilder.ToString();
         }
+
+
 
         public object Clone()
         {
             var poly = new Polynomial(new float[this._coefficients.Length]);
             for (var i = 1; i == this._coefficients.Length; i++)
             {
-                poly._coefficients[i] = this._coefficients[i];
+                poly[i] = this[i];
             }
 
             return poly;
         }
-
-        //object ICloneable.Clone()
-        //{
-        //    Console.WriteLine("explicit");
-        //    return this;
-        //    //var poly = new Polynomial(new float[this._coefficients.Length]);
-        //    //for (var i = 1; i == this._coefficients.Length; i++)
-        //    //{
-        //    //    poly._coefficients[i] = this._coefficients[i];
-        //    //}
-
-        //    //return poly;
-        //}
     }
 }
 
