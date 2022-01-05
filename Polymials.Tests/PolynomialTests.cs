@@ -40,7 +40,7 @@ namespace Polynomials.Tests
         }
 
         [Fact]
-        public void Test4()
+        public void InitiatePolynomialWithOverLength_ThrowsProperException()
         {
             //Arrange
             var arr = new float[101];
@@ -54,27 +54,60 @@ namespace Polynomials.Tests
         }
 
         [Fact]
-        public void Test5()
+        public void Equals_CheckIfTwoPolynomialsAre_Equal()
         {
+            //Arrange
+            var p = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var s = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
 
+            //Act
+            var result = p.Equals(s);
+
+            //Assert
+            Assert.True(result);
         }
 
         [Fact]
-        public void Test6()
+        public void Equals_CheckIfTwoPolynomialsAre_NotEqual()
         {
+            //Arrange
+            var p = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var s = new Polynomial(new float[] { 1.2F, 1.2F, 1.3F, 1.4F, 1.5F });
 
+            //Act
+            var result = p.Equals(s);
+
+            //Assert
+            Assert.False(result);
         }
 
         [Fact]
-        public void Test7()
+        public void Are_FloatsEqualEnough()
         {
+            //Arrange
+            var left = 1.000000001F;
+            var right = 1.000000001F;
+            
+            //Act
+            var result = Polynomial.FloatsAreEqualEnough(left, right);
 
+            //Assert
+            Assert.True(result);
         }
 
+        // Somethings wrong with tolerance equality, or  with me :D 
         [Fact]
-        public void Test8()
+        public void Are_Not_FloatsEqualEnough()
         {
+            //Arrange
+            var left = 1.000000001F;
+            var right = 1.00000001F;
 
+            //Act
+            var result = Polynomial.FloatsAreEqualEnough(left, right);
+
+            //Assert
+            Assert.False(result);
         }
 
         [Fact]

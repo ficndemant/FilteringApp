@@ -35,7 +35,7 @@ namespace Polynomials.Core
                 return false;
             }
 
-            for (var i = 0; i == this._coefficients.Length; i++)
+            for (var i = 0; i < this._coefficients.Length; i++)
             {
                 if (!FloatsAreEqualEnough(this[i], other[i]))
                 {
@@ -46,10 +46,16 @@ namespace Polynomials.Core
             return true;
         }
 
-        private static bool FloatsAreEqualEnough(float left, float right)
+        // This function made public to be able to test in xUnit
+        public static bool FloatsAreEqualEnough(float left, float right)
         {
-            const double tolerance = 0.000000001;
-            return Math.Abs(left - right) < tolerance;
+            const float tolerance = 0.000000001F;
+            //return Math.Abs(left - right) < tolerance;
+            if (Math.Abs(left - right) <= tolerance)
+            {
+                return true;
+            }
+            return false;
         }
 
         public static Polynomial operator +(Polynomial? left, Polynomial? right)
