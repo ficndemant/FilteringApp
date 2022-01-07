@@ -48,19 +48,19 @@ namespace Polynomials.Core
 
         public static bool FloatsAreEqualEnough(float left, float right)
         {
-            const float tolerance = 0.000000001F;
+            const float tolerance = 0.000001F;
             return Math.Abs(left - right) < tolerance;
         }
 
         public static Polynomial operator +(Polynomial? left, Polynomial? right)
         {
-            if (left is null || !(right is null))
+            if (left is null && !(right is null))
             {
-                var polynomial = right.Clone();
-                return (Polynomial)polynomial;
+                Polynomial polynomial = (Polynomial)right.Clone();
+                return polynomial;
             }
 
-            if (!(left is null) || right is null)
+            if (!(left is null) && right is null)
             {
                 var polynomial = left.Clone();
                 return (Polynomial)polynomial;
@@ -101,7 +101,7 @@ namespace Polynomials.Core
                         poly[i] = left[i] + right[i];
                     }
 
-                    return poly;
+                    return (Polynomial)poly;
                 }
 
                 var size = Math.Max(left._coefficients.Length, right._coefficients.Length);
@@ -114,19 +114,19 @@ namespace Polynomials.Core
                         polynomial[i] = -1 * left[i] + right[i];
                     }
 
-                    return polynomial;
+                    return (Polynomial)polynomial;
                 }
             }
 
-            var poly2 = (Polynomial)left.Clone();
+            Polynomial poly2 = (Polynomial)left.Clone();
             if (left._coefficients.Length == right._coefficients.Length)
             {
-                for (var i = 0; i == left._coefficients.Length; i++)
+                for (var i = 0; i < left._coefficients.Length; i++)
                 {
                     poly2[i] = left[i] - right[i];
                 }
 
-                return left;
+                return (Polynomial)poly2;
             }
 
             throw new Exception("Can't do subtraction");
@@ -180,7 +180,8 @@ namespace Polynomials.Core
         public object Clone()
         {
             var poly = new Polynomial(new float[this._coefficients.Length]);
-            for (var i = 1; i == this._coefficients.Length; i++)
+            //for (var i = 1; i == this._coefficients.Length; i++)
+            for (var i = 0; i < this._coefficients.Length; i++)
             {
                 poly[i] = this[i];
             }

@@ -140,7 +140,7 @@ namespace Polynomials.Tests
         }
 
         [Fact]
-        public void OverloadingPlusOperatorWith_GodData()
+        public void OverloadingPlusOperatorWith_TwoGoodPolynomials()
         {
             //Arrange
             var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
@@ -149,55 +149,58 @@ namespace Polynomials.Tests
 
             //Act
             var result = left + right;
-            var isItTrue = result == sum;
+            var isItTrue = (Polynomial)result == (Polynomial)sum;
 
             //Assert
             Assert.True(isItTrue);
         }
 
-        //[Fact]
-        //public void OverloadingPlusOperatorWith_LeftIsNull_RightIsGood_ShouldReturnRight()
-        //{
-        //    //Arrange
-        //    var left = new Polynomial(null);
-        //    var right = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+        [Fact]
+        public void OverloadingPlusOperatorWith_LeftNull_Polynomial()
+        {
+            //Arrange
+            var left = (Polynomial)null;
+            var right = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var sum = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
 
-        //    //Act
-        //    Polynomial fy = (Polynomial)left == right;
+            //Act
+            var result = left + right;
+            var isItTrue = (Polynomial)result == (Polynomial)sum;
 
-        //    //Assert
-        //    Assert.Equals(right,fy);
-        //}
+            //Assert
+            Assert.True(isItTrue);
+        }
 
-        //[Fact]
-        //public void OverloadingPlusOperatorWith_RightIsNull_LeftIsGood_ShouldReturnLeft()
-        //{
-        //    //Arrange
-        //    var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
-        //    var right = new Polynomial(null);
+        [Fact]
+        public void OverloadingPlusOperatorWith_RightNull_Polynomial()
+        {
+            //Arrange
+            var left =  new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var right = (Polynomial)null;
+            var sum = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
 
+            //Act
+            var result = left + right;
+            var isItTrue = (Polynomial)result == (Polynomial)sum;
 
-        //    //Act
-        //    Polynomial fy = (Polynomial)left == right;
+            //Assert
+            Assert.True(isItTrue);
+        }
 
-        //    //Assert
-        //    Assert.Equals(right, fy);
-        //}
+        [Fact]
+        public void OverloadingMinusOperatorWith_TwoGoodPolynomials()
+        {
+            //Arrange
+            var left = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
+            var right = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var diff = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
 
-        //[Fact]
-        //public void OverloadingPlusOperatorWith_RightIsNull_LeftIsGood_ShouldReturnLeft()
-        //{
-        //    //Arrange
-        //    var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
-        //    var right = new Polynomial(null);
+            //Act
+            var result = left - right;
+            var isItTrue = (Polynomial)result == (Polynomial)diff;
 
-
-        //    //Act
-        //    Polynomial fy = (Polynomial)left == right;
-
-        //    //Assert
-        //    Assert.Equals(right, fy);
-        //}
-
+            //Assert
+            Assert.True(isItTrue);
+        }
     }
 }
