@@ -46,16 +46,10 @@ namespace Polynomials.Core
             return true;
         }
 
-        // This function made public to be able to test in xUnit
         public static bool FloatsAreEqualEnough(float left, float right)
         {
             const float tolerance = 0.000000001F;
-            //return Math.Abs(left - right) < tolerance;
-            if (Math.Abs(left - right) <= tolerance)
-            {
-                return true;
-            }
-            return false;
+            return Math.Abs(left - right) < tolerance;
         }
 
         public static Polynomial operator +(Polynomial? left, Polynomial? right)
