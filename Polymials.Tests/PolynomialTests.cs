@@ -85,8 +85,8 @@ namespace Polynomials.Tests
         public void Are_FloatsEqualEnough()
         {
             //Arrange
-            var left = 1.000000001F;
-            var right = 1.000000001F;
+            var left = 1.00001F;
+            var right = 1.00001F;
             
             //Act
             var result = Polynomial.FloatsAreEqualEnough(left, right);
@@ -95,13 +95,12 @@ namespace Polynomials.Tests
             Assert.True(result);
         }
 
-        // Somethings wrong with tolerance equality, or  with me :D 
         [Fact]
         public void Are_Not_FloatsEqualEnough()
         {
             //Arrange
-            var left = 1.000000001F;
-            var right = 1.00000001F;
+            float left = 1.00001F;
+            float right = 1.0001F;
 
             //Act
             var result = Polynomial.FloatsAreEqualEnough(left, right);
