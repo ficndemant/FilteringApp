@@ -140,6 +140,34 @@ namespace Polynomials.Tests
         }
 
         [Fact]
+        public void OverloadingNotEqualsOperatorWith_BadData()
+        {
+            //Arrange
+            var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var right = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F });
+
+            //Act
+            var result = left != right;
+
+            //Assert
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void OverloadingNotEqualsOperatorWith_GoodData()
+        {
+            //Arrange
+            var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var right = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+
+            //Act
+            var result = left != right;
+
+            //Assert
+            Assert.False(result);
+        }
+
+        [Fact]
         public void OverloadingPlusOperatorWith_TwoGoodPolynomials()
         {
             //Arrange
@@ -201,6 +229,96 @@ namespace Polynomials.Tests
 
             //Assert
             Assert.True(isItTrue);
+        }
+
+        [Fact]
+        public void OverloadingMinusOperatorWith_LeftNull_Polynomial()
+        {
+            //Arrange
+            var left = (Polynomial)null;
+            var right = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+
+            //Act
+            var actualException = Assert.Throws<Exception>(() => left - right);
+
+            //Assert
+            Assert.Equal("Can't do subtraction", actualException.Message);
+        }
+
+        [Fact]
+        public void OverloadingMinusOperatorWith_RightNull_Polynomial()
+        {
+            //Arrange
+            var right = (Polynomial)null;
+            var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+
+            //Act
+            var actualException = Assert.Throws<Exception>(() => left - right);
+
+            //Assert
+            Assert.Equal("Can't do subtraction", actualException.Message);
+        }
+
+        [Fact]
+        public void OverloadingMinusOperatorWith_Right_Longer_Than_Left()
+        {
+            //Arrange
+            var left = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
+            var right = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F });
+            var diff = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 3.0F });
+
+            //Act
+            var result = left - right;
+            var isItTrue = (Polynomial)result == (Polynomial)diff;
+
+            //Assert
+            Assert.True(isItTrue);
+        }
+
+        //[Fact]
+        //public void OverloadingMinusOperatorWith_Left_Longer_Than_Right()
+        //{
+        //    //Arrange
+        //                  var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F });
+        //    var right = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
+        //      var diff = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 3.0F });
+
+        //    //Act
+        //    var result = left - right;
+        //    var dupa = result;
+        //    Console.ReadLine();
+        //    var isItTrue = (Polynomial)result == (Polynomial)diff;
+
+        //    //Assert
+        //    Assert.True(isItTrue);
+        //}
+
+        [Fact]
+        public void CloneThisPolynomial()
+        {
+            //Arrange
+            var left = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
+            var clone = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
+
+            //Act
+            var result = left.Clone();
+            var isItTrue = (Polynomial)result == (Polynomial)left;
+
+            //Assert
+            Assert.True(isItTrue);
+        }
+
+        [Fact]
+        public void ToStringWithThisPolynomial()
+        {
+            //Arrange
+            var left = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
+
+            //Act
+            var read = left.ToString();
+
+            //Assert
+            Assert.Equal(read,"3x^4 + 2,8x^3 + 2,6x^2 + 2,4x + 2,2");
         }
     }
 }

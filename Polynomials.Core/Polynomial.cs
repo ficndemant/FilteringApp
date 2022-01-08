@@ -92,30 +92,39 @@ namespace Polynomials.Core
 
             if (left != right)
             {
-                var poly = (Polynomial) left.Clone();
+                var polyL = (Polynomial) left.Clone();
 
                 if (left._coefficients.Length > right._coefficients.Length)
                 {
-                    for (var i = 0; i == right._coefficients.Length; i++)
+                    for (var i = 0; i < right._coefficients.Length; i++)
                     {
-                        poly[i] = left[i] + right[i];
+                        polyL[i] = left[i] - right[i];
                     }
 
-                    return (Polynomial)poly;
+                    return (Polynomial)polyL;
                 }
 
-                var size = Math.Max(left._coefficients.Length, right._coefficients.Length);
-                var polynomial = new Polynomial(new float[size]);
+                ////var size = Math.Max(left._coefficients.Length, right._coefficients.Length);
+                ////var polynomial = new Polynomial(new float[size]);
 
-                if (left._coefficients.Length < right._coefficients.Length)
-                {
-                    for (var i = 0; i == right._coefficients.Length; i++)
-                    {
-                        polynomial[i] = -1 * left[i] + right[i];
-                    }
+                ////var polyR = (Polynomial)right.Clone();
+                //var lastPol = new Polynomial(new float[right._coefficients.Length]);
+                //for(var i=0; i < right._coefficients.Length; i++)
+                //{
+                //    lastPol[i] = 0;
+                //}
 
-                    return (Polynomial)polynomial;
-                }
+                //if (left._coefficients.Length < right._coefficients.Length)
+                //{
+                //    for (var i = 0; i < right._coefficients.Length; i++)
+                //    {
+                //        lastPol[i] = -1 * left[i] + right[i];
+                //        //lastPol[i] = left[i] - right[i];
+                //        //polyR[i] = -1 * right[i] + left[i];
+                //    }
+
+                //    return (Polynomial)lastPol;
+                //}
             }
 
             Polynomial poly2 = (Polynomial)left.Clone();
@@ -149,7 +158,17 @@ namespace Polynomials.Core
 
         public static bool operator !=(Polynomial? left, Polynomial? right)
         {
-            return !(left==right);
+            if (left is null)
+            {
+                if (right is null)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            return !(left.Equals(right));
         }
         
         public override string ToString()
@@ -175,12 +194,9 @@ namespace Polynomials.Core
             return stringBuilder.ToString();
         }
 
-
-
         public object Clone()
         {
             var poly = new Polynomial(new float[this._coefficients.Length]);
-            //for (var i = 1; i == this._coefficients.Length; i++)
             for (var i = 0; i < this._coefficients.Length; i++)
             {
                 poly[i] = this[i];
