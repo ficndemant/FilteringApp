@@ -141,6 +141,18 @@ namespace Polynomials.Core
             throw new Exception("Can't do subtraction");
         }
 
+        public static Polynomial operator *(Polynomial? poly, int number)
+        {
+            Polynomial copy = (Polynomial)poly.Clone();
+
+            for (var i = 0; i < poly._coefficients.Length; i++)
+            {
+                copy[i] = poly[i] * number;
+            }
+
+            return copy;
+        }
+
         public static bool operator ==(Polynomial? left, Polynomial? right)
         {
             if (left is null)

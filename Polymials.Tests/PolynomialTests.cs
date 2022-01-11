@@ -294,6 +294,21 @@ namespace Polynomials.Tests
         //}
 
         [Fact]
+        public void OverloadingMultiplyOperatorWith_PolynomialTimesInt()
+        {
+            //Arrange
+            var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var result = new Polynomial(new float[] {2.2F, 2.4F, 2.6F, 2.8F, 3.0F});
+            var number = 2;
+
+            //Act
+            var actual = left * number;
+
+            //Assert
+            Assert.Equal(actual, result);
+        }
+
+        [Fact]
         public void CloneThisPolynomial()
         {
             //Arrange
