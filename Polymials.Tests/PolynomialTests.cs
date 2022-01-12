@@ -260,7 +260,7 @@ namespace Polynomials.Tests
         }
 
         [Fact]
-        public void OverloadingMinusOperatorWith_Right_Longer_Than_Left()
+        public void OverloadingMinusOperatorWith_Left_Longer_Than_Right()
         {
             //Arrange
             var left = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
@@ -274,24 +274,22 @@ namespace Polynomials.Tests
             //Assert
             Assert.True(isItTrue);
         }
+        //-------------------------------------------------------------------------------
+        [Fact]
+        public void OverloadingMinusOperatorWith_Right_Longer_Than_Left()
+        {
+            //Arrange
+            var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F });
+            var right = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
+            var diff = new Polynomial(new float[] { -1.1F, -1.2F, -1.3F, -1.4F, -3.0F });
 
-        //[Fact]
-        //public void OverloadingMinusOperatorWith_Left_Longer_Than_Right()
-        //{
-        //    //Arrange
-        //                  var left = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F });
-        //    var right = new Polynomial(new float[] { 2.2F, 2.4F, 2.6F, 2.8F, 3.0F });
-        //      var diff = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 3.0F });
+            //Act
+            var result = left - right;
+            var isItTrue = (Polynomial)result == (Polynomial)diff;
 
-        //    //Act
-        //    var result = left - right;
-        //    var dupa = result;
-        //    Console.ReadLine();
-        //    var isItTrue = (Polynomial)result == (Polynomial)diff;
-
-        //    //Assert
-        //    Assert.True(isItTrue);
-        //}
+            //Assert
+            Assert.True(isItTrue);
+        }
 
         [Fact]
         public void OverloadingMultiplyOperatorWith_PolynomialTimesInt()

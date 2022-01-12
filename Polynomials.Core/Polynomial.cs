@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Text;
-
 namespace Polynomials.Core
 {
+using System.Text;
+
     public class Polynomial : IEquatable<Polynomial>, ICloneable
     {
         private readonly float[] _coefficients;
@@ -82,7 +82,6 @@ namespace Polynomials.Core
             return (Polynomial)polynomia;
         }
 
-
         public static Polynomial operator -(Polynomial? left, Polynomial? right)
         {
             if (left is null || right is null)
@@ -104,27 +103,26 @@ namespace Polynomials.Core
                     return (Polynomial)polyL;
                 }
 
-                ////var size = Math.Max(left._coefficients.Length, right._coefficients.Length);
-                ////var polynomial = new Polynomial(new float[size]);
+                var lastPol = new Polynomial(new float[right._coefficients.Length]);
+                for (var i = 0; i < right._coefficients.Length; i++)
+                {
+                    lastPol[i] = 0.0F;
+                }
 
-                ////var polyR = (Polynomial)right.Clone();
-                //var lastPol = new Polynomial(new float[right._coefficients.Length]);
-                //for(var i=0; i < right._coefficients.Length; i++)
-                //{
-                //    lastPol[i] = 0;
-                //}
+                for (var i = 0; i < left._coefficients.Length; i++)
+                {
+                    lastPol[i] = left[i];
+                }
 
-                //if (left._coefficients.Length < right._coefficients.Length)
-                //{
-                //    for (var i = 0; i < right._coefficients.Length; i++)
-                //    {
-                //        lastPol[i] = -1 * left[i] + right[i];
-                //        //lastPol[i] = left[i] - right[i];
-                //        //polyR[i] = -1 * right[i] + left[i];
-                //    }
+                if (left._coefficients.Length < right._coefficients.Length)
+                {
+                    for (var i = 0; i < right._coefficients.Length; i++)
+                    {
+                        lastPol[i] -= right[i];
+                    }
 
-                //    return (Polynomial)lastPol;
-                //}
+                    return (Polynomial)lastPol;
+                }
             }
 
             Polynomial poly2 = (Polynomial)left.Clone();
