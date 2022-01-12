@@ -139,6 +139,22 @@ using System.Text;
             throw new Exception("Can't do subtraction");
         }
 
+        public static Polynomial operator -(Polynomial? input)
+        {
+            if (input is null)
+            {
+                return null;
+            }
+
+            Polynomial clone = (Polynomial) input.Clone();
+            for (var i = 0; i < input._coefficients.Length; i++)
+            {
+                clone[i] = -1 * input[i];
+            }
+
+            return clone;
+        }
+
         public static Polynomial operator *(Polynomial? poly, int number)
         {
             Polynomial copy = (Polynomial)poly.Clone();

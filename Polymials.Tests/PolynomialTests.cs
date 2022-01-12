@@ -109,8 +109,6 @@ namespace Polynomials.Tests
             Assert.False(result);
         }
 
-        //[Theory]
-        //[InlineData(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F },new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F })]
         [Fact]
         public void OverloadingEqualsOperatorWith_GodData()
         {
@@ -213,6 +211,20 @@ namespace Polynomials.Tests
 
             //Assert
             Assert.True(isItTrue);
+        }
+
+        [Fact]
+        public void OverloadingMinusOperator_Unary_Negation()
+        {
+            //Arrange
+            var input = new Polynomial(new float[] { 1.1F, 1.2F, 1.3F, 1.4F, 1.5F });
+            var outcome = new Polynomial(new float[] {-1.1F, -1.2F, -1.3F, -1.4F, -1.5F});
+
+            //Act
+            var result = -input;
+
+            //Assert 
+            Assert.Equal(outcome, result);
         }
 
         [Fact]
