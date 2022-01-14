@@ -14,7 +14,7 @@ namespace FilteringApp.Core.Utils
                 var current = v;
                 while (current > 0)
                 {
-                    if (current % 10 == input.IntValue)
+                    if (current % 10 == input.IntValue) 
                     {
                         result.Add(current);
                         break;
@@ -32,7 +32,7 @@ namespace FilteringApp.Core.Utils
         public static int AddArrayElements(this int[] array)
         {
             var theSum = 0;
-            foreach (int item in array)
+            foreach (var item in array)
             {
                 theSum += item;
             }

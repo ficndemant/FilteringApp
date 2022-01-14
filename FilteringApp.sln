@@ -15,9 +15,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrandCommonDivisor.ConsoleU
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrandCommonDivisor.Core", "GCD\GrandCommonDivisor.Core\GrandCommonDivisor.Core.csproj", "{EBF254E7-33E6-429C-AB40-836AAEF26232}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilteringApp.Tests", "FilteringApp\FilteringApp.Tests\FilteringApp.Tests.csproj", "{354CABB0-9921-4CC4-95D4-6F2A523FD9B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FilteringApp.Tests", "FilteringApp\FilteringApp.Tests\FilteringApp.Tests.csproj", "{354CABB0-9921-4CC4-95D4-6F2A523FD9B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrandCommonDivisor.Tests", "GCD\GrandCommonDivisor.Tests\GrandCommonDivisor.Tests.csproj", "{3A6C324E-BC76-4BC6-9CCC-D87562C71132}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrandCommonDivisor.Tests", "GCD\GrandCommonDivisor.Tests\GrandCommonDivisor.Tests.csproj", "{3A6C324E-BC76-4BC6-9CCC-D87562C71132}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Polynomials", "Polynomials", "{E0DC0B5D-349A-47B7-A256-5A13C307A71B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynomials.Core", "Polynomials.core\Polynomials.Core.csproj", "{BAC78F59-D3DE-480A-A905-D81AE5A4E1D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Polynomials.Tests", "Polymials.Tests\Polynomials.Tests.csproj", "{A333C818-9176-40D5-8DDD-329D19DDDDC9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,6 +55,14 @@ Global
 		{3A6C324E-BC76-4BC6-9CCC-D87562C71132}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3A6C324E-BC76-4BC6-9CCC-D87562C71132}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3A6C324E-BC76-4BC6-9CCC-D87562C71132}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC78F59-D3DE-480A-A905-D81AE5A4E1D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC78F59-D3DE-480A-A905-D81AE5A4E1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC78F59-D3DE-480A-A905-D81AE5A4E1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC78F59-D3DE-480A-A905-D81AE5A4E1D5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A333C818-9176-40D5-8DDD-329D19DDDDC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A333C818-9176-40D5-8DDD-329D19DDDDC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A333C818-9176-40D5-8DDD-329D19DDDDC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A333C818-9176-40D5-8DDD-329D19DDDDC9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +74,8 @@ Global
 		{EBF254E7-33E6-429C-AB40-836AAEF26232} = {A1FD278A-5635-44D0-9EFC-286EA44DA7F6}
 		{354CABB0-9921-4CC4-95D4-6F2A523FD9B5} = {60C816AC-C435-4016-BC9A-C6CC1BFDDAD2}
 		{3A6C324E-BC76-4BC6-9CCC-D87562C71132} = {A1FD278A-5635-44D0-9EFC-286EA44DA7F6}
+		{BAC78F59-D3DE-480A-A905-D81AE5A4E1D5} = {E0DC0B5D-349A-47B7-A256-5A13C307A71B}
+		{A333C818-9176-40D5-8DDD-329D19DDDDC9} = {E0DC0B5D-349A-47B7-A256-5A13C307A71B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3C65EAA5-6CCD-4B40-B3C1-D0AB7FDE3B91}
